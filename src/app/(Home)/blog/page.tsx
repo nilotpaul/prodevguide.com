@@ -1,5 +1,6 @@
 import { Categories } from '@/config';
 import { getPosts } from '@/lib/post';
+import { createPostLink } from '@/lib/utils';
 
 import { Separator } from '@/components/ui/separator';
 import PostPreview from '@/components/PostPreview';
@@ -30,10 +31,7 @@ const BlogPage = () => {
 
             <GridWrapper>
               {item.publishedPosts.map((post) => (
-                <Link
-                  href={`/blog${post.slug.replace('/posts', `/${post.category.toLowerCase()}`)}`}
-                  key={post._id}
-                >
+                <Link href={`/blog${createPostLink(post)}`} key={post._id}>
                   <PostPreview post={post} />
                 </Link>
               ))}

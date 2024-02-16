@@ -24,7 +24,7 @@ export default function RootLayout({
           <main>{children}</main>
 
           <div
-            className='xs:opacity-90 absolute inset-x-0 -top-40 -z-10 overflow-hidden opacity-80 blur-3xl sm:opacity-50'
+            className='absolute inset-x-0 -top-40 -z-10 overflow-hidden opacity-80 blur-3xl xs:opacity-90 sm:opacity-50'
             aria-hidden='true'
           >
             <div

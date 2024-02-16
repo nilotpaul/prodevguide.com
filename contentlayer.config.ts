@@ -72,6 +72,7 @@ export const Post = defineDocumentType(() => ({
         type: 'string',
         options: Tags,
       },
+      required: true,
     },
     authors: {
       type: 'list',

@@ -19,10 +19,10 @@ const HeaderHoverCard = ({ children }: HeaderHoverCardProps) => {
         {Categories.map((item, index) => (
           <Link
             href={`/blog${item.path}`}
-            className='cursor-pointer space-y-1 rounded-sm p-3 px-4 transition-colors hover:bg-zinc-400/40 dark:hover:bg-slate-900'
+            className='cursor-pointer rounded-sm p-3 px-4 transition-colors hover:bg-zinc-400/40 dark:hover:bg-slate-900'
             key={`${item}-${index}`}
           >
-            <h2 className='text-base font-bold text-rose'>{item.name}</h2>
+            <span className='text-base font-bold text-rose'>{item.name}</span>
             <p className='line-clamp-2 text-sm text-zinc-700 dark:text-zinc-300'>
               {item.description}
             </p>

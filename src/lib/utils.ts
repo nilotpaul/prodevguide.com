@@ -5,6 +5,12 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export const createPostLink = ({ slug, category }: { slug: string; category: string }) => {
+  const link = slug.replace('posts', category.replace('.', '').toLowerCase());
+
+  return link;
+};
+
 export const createHeadingLink = (heading: string) => {
   const link = heading.replaceAll('#', '').replace(' ', '').replaceAll(' ', '-').toLowerCase();
 

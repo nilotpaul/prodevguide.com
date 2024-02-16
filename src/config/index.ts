@@ -37,4 +37,4 @@ export const Categories = [
   },
 ];
 
-export const Tags = [];
+export const Tags = ['tag1', 'tag2', 'tag3'];

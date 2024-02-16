@@ -6,7 +6,11 @@ type GridWrapperProps = {
 };
 
 const GridWrapper = ({ children, className }: GridWrapperProps) => {
-  return <div className={cn('grid grid-cols-2 gap-x-16 gap-y-10', className)}>{children}</div>;
+  return (
+    <div className={cn('grid gap-8 sm:grid-cols-2 md:gap-x-16 md:gap-y-10', className)}>
+      {children}
+    </div>
+  );
 };
 
 export default GridWrapper;

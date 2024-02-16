@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import { getPosts } from '@/lib/post';
+import { createPostLink } from '@/lib/utils';
 
 import { Separator } from '@/components/ui/separator';
 import PostPreview from '@/components/PostPreview';
@@ -29,10 +30,7 @@ const page = ({ params }: pageProps) => {
 
       <GridWrapper>
         {posts.map((post) => (
-          <Link
-            href={`/blog${post.slug.replace('/posts', `/${post.category.toLowerCase()}`)}`}
-            key={post._id}
-          >
+          <Link href={`/blog${createPostLink(post)}`} key={post._id}>
             <PostPreview post={post} />
           </Link>
         ))}
