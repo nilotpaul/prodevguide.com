@@ -3,32 +3,61 @@ import { useMDXComponent } from 'next-contentlayer/hooks';
 import Link from 'next/link';
 import { Button } from './ui/button';
 import { cn } from '@/lib/utils';
+import Image, { ImageProps } from 'next/image';
+import { AspectRatio } from './ui/aspect-ratio';
+import Toc from './Toc';
 
 type MdxRendererProps = {
   code: string;
   className?: string;
+  showToc?: boolean;
 };
 
-const MdxRenderer = ({ code, className }: MdxRendererProps) => {
+const MdxRenderer = ({ code, className, showToc = false }: MdxRendererProps) => {
   const content = useMDXComponent(code)({
     components: {
       h1: ({ children, ...props }) => <h1 {...props}>{children}</h1>,
       h2: ({ children, ...props }) => <h2 {...props}>{children}</h2>,
       h3: ({ children, ...props }) => <h3 {...props}>{children}</h3>,
-      h4: ({ children, ...props }) => <h4 {...props}>{children}</h4>,
-      h5: ({ children, ...props }) => <h5 {...props}>{children}</h5>,
-      p: ({ children, ...props }) => <p {...props}>{children}</p>,
-      a: ({ children, href }) => (
-        <Button variant='link' className='px-0 text-primary' asChild>
-          <Link href={href ?? ''}>{children}</Link>
+      p: ({ children, ...props }) =>
+        typeof children === 'string' ? <p {...props}>{children}</p> : children,
+      a: ({ children, href, className }) => (
+        <Button variant='link' className={cn('h-min p-0 text-primary', className)} asChild>
+          <Link href={href || ''}>{children}</Link>
         </Button>
       ),
+      Image: ({ src, height, width, alt, className, ...props }: ImageProps) => (
+        <Image
+          src={src}
+          height={height}
+          width={width}
+          alt={alt ?? 'Post Image'}
+          className={cn(
+            'h-full w-full rounded-md object-fill shadow-lg shadow-zinc-400 dark:shadow-zinc-900',
+            className
+          )}
+          {...props}
+        />
+      ),
       br: () => <br />,
+      nav: ({ children, className, ...props }) =>
+        className === 'toc' && showToc ? (
+          <Toc toc={children} />
+        ) : (
+          <nav {...props} className={className}>
+            {children}
+          </nav>
+        ),
     },
   });
 
   return (
-    <article className={cn('prose prose-base dark:prose-invert prose-a:no-underline', className)}>
+    <article
+      className={cn(
+        'prose prose-base z-50 min-w-full dark:prose-invert prose-a:no-underline',
+        className
+      )}
+    >
       {content}
     </article>
   );

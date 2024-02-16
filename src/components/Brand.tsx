@@ -7,13 +7,15 @@ type BrandProps = {
 
 const Brand = ({ className, ...props }: BrandProps) => {
   return (
-    <Link
-      {...props}
-      href='/'
-      className={cn('xs:text-base cursor-pointer text-sm font-bold', className)}
-    >
-      MyBlog.dev
-    </Link>
+    <h1>
+      <Link
+        {...props}
+        href='/'
+        className={cn('cursor-pointer text-sm font-bold xs:text-base', className)}
+      >
+        MyBlog.dev
+      </Link>
+    </h1>
   );
 };
 

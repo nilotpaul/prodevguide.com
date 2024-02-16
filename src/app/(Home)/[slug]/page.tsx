@@ -2,12 +2,22 @@ import { allPages } from '.contentlayer/generated';
 import { notFound } from 'next/navigation';
 import { format } from 'date-fns';
 
-import MdxRenderer from '@/components/MdxRenderer';
 import { Separator } from '@/components/ui/separator';
 import Heading from '@/components/ui/Heading';
+import MdxRenderer from '@/components/MdxRenderer';
 
-const AboutPage = () => {
-  const page = allPages.find((page) => page.slugAsParams === 'about');
+export const dynamic = 'force-static';
+
+type PageProps = {
+  params: {
+    slug: string;
+  };
+};
+
+const Page = ({ params }: PageProps) => {
+  const { slug } = params;
+
+  const page = allPages.find((page) => page.slugAsParams === slug);
 
   if (!page) return notFound();
 
@@ -22,11 +32,11 @@ const AboutPage = () => {
         </p>
       </div>
 
-      <Separator className='h-[0.5px] w-full bg-rose dark:bg-rose/50' />
+      <Separator className='w-full' />
 
       <MdxRenderer code={page.body.code} />
     </div>
   );
 };
 
-export default AboutPage;
+export default Page;

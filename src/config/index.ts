@@ -16,3 +16,25 @@ export const NAV_MENU = [
     path: '/about',
   },
 ];
+
+export const PostStatus = ['draft', 'published'];
+
+export const Categories = [
+  {
+    name: 'React',
+    description: 'Build dynamic web apps faster with best practices.',
+    path: '/react',
+  },
+  {
+    name: 'Next.js',
+    description: 'Detailed guide in ssr and the new app router.',
+    path: '/nextjs',
+  },
+  {
+    name: 'CSS',
+    description: 'Pro tips and tricks, responsive designs, etc.',
+    path: '/css',
+  },
+];
+
+export const Tags = [];

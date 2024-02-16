@@ -5,6 +5,14 @@ const nextConfig = {
   experimental: {
     // ppr: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'github.com',
+      },
+    ],
+  },
   reactStrictMode: true,
   compress: true,
   optimizeFonts: true,

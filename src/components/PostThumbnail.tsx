@@ -1,0 +1,17 @@
+import Image from 'next/image';
+import { AspectRatio } from './ui/aspect-ratio';
+
+type PostThumbnailProps = {
+  image: string;
+  alt: string;
+};
+
+const PostThumbnail = ({ image, alt }: PostThumbnailProps) => {
+  return (
+    <AspectRatio ratio={16 / 9} className='shadow-xl shadow-zinc-400 dark:shadow-blue-950'>
+      <Image src={image} fill alt={alt} className='my-4 rounded-md object-cover' />
+    </AspectRatio>
+  );
+};
+
+export default PostThumbnail;
