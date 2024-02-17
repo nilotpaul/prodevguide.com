@@ -2,6 +2,7 @@ import { allPosts } from '.contentlayer/generated';
 
 export const getRecentPosts = (limit: number = 6) => {
   const posts = allPosts
+    .filter((post) => post.status === 'published')
     .sort((a, b) => Number(new Date(b.publishedDate)) - Number(new Date(a.publishedDate)))
     .slice(0, limit);
 
@@ -16,6 +17,7 @@ export const getPosts = (category: string) => {
   const posts = allPosts
     .filter(
       (post) =>
+        post.status === 'published' &&
         post.category.replace('.', '').toLowerCase() === category.replace('.', '').toLowerCase()
     )
     .sort((a, b) => Number(new Date(b.publishedDate)) - Number(new Date(a.publishedDate)));

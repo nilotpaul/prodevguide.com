@@ -1,21 +1,27 @@
 import { notFound } from 'next/navigation';
 import { getPosts } from '@/lib/post';
 import { createPostLink } from '@/lib/utils';
+import { Categories } from '@/config';
 
 import { Separator } from '@/components/ui/separator';
 import PostPreview from '@/components/PostPreview';
 import GridWrapper from '@/components/GridWrapper';
 import Link from 'next/link';
+import Heading from '@/components/ui/Heading';
 
-export const dynamic = 'force-static';
+export function generateStaticParams() {
+  return Categories.map(({ path }) => ({
+    category: path.replace('/', ''),
+  }));
+}
 
-type pageProps = {
+type CategoryPageProps = {
   params: {
     category: string;
   };
 };
 
-const page = ({ params }: pageProps) => {
+const CategoryPage = ({ params }: CategoryPageProps) => {
   const { category } = params;
 
   const posts = getPosts(category).slice(0, 8);
@@ -24,9 +30,9 @@ const page = ({ params }: pageProps) => {
 
   return (
     <div className='space-y-9'>
-      <h1 className='w-fit font-bold'>
-        {posts[0].category} <Separator className='mt-1.5 bg-rose dark:bg-rose' />
-      </h1>
+      <Heading className='w-fit'>
+        {posts[0].category} <Separator className='mt-1.5 h-1 bg-rose dark:bg-rose' />
+      </Heading>
 
       <GridWrapper>
         {posts.map((post) => (
@@ -39,4 +45,4 @@ const page = ({ params }: pageProps) => {
   );
 };
 
-export default page;
+export default CategoryPage;

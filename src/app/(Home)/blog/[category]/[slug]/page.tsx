@@ -1,7 +1,8 @@
 import { getAuthorByName } from '@/lib/author';
-import { getPublishedPost } from '@/lib/post';
+import { getPosts, getPublishedPost } from '@/lib/post';
 import { calculateReadingTime } from '@/lib/utils';
 import { notFound } from 'next/navigation';
+import { Categories } from '@/config';
 import { format } from 'date-fns';
 
 import { Separator } from '@/components/ui/separator';
@@ -9,7 +10,21 @@ import AuthorBar from '@/components/AuthorBar';
 import MdxRenderer from '@/components/MdxRenderer';
 import PostThumbnail from '@/components/PostThumbnail';
 
-export const dynamic = 'force-static';
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  const posts = Categories.map(({ path }) => {
+    const category = path.replace('/', '');
+    const posts = getPosts(category);
+
+    return posts.map(({ slugAsParams }) => ({
+      category,
+      slug: slugAsParams,
+    }));
+  });
+
+  return posts.flat();
+}
 
 type PostPageProps = {
   params: {
@@ -28,7 +43,7 @@ const PostPage = ({ params }: PostPageProps) => {
 
   return (
     <div className='space-y-2'>
-      <h1 className='text-5xl font-bold xs:mb-8'>{post.title}</h1>
+      <h1 className='mb-6 text-4xl font-bold xs:mb-8'>{post.title}</h1>
       <p className='py-2 text-sm font-semibold leading-8 md:text-base'>{post.description}</p>
 
       <p className='pb-4 pt-2 text-sm font-medium'>

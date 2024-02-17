@@ -4,8 +4,6 @@ import Heading from '@/components/ui/Heading';
 import ProjectsServer from './ProjectsServer';
 import { Suspense } from 'react';
 
-export const dynamic = 'force-static';
-
 const ProjectsPage = () => {
   return (
     <div>

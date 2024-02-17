@@ -11,7 +11,7 @@ const RecentPosts = () => {
 
   return (
     <div className='w-full'>
-      <Heading className='text-3xl'>Recent Posts</Heading>
+      <Heading className='text-2xl xs:text-3xl'>Recent Posts</Heading>
 
       <GridWrapper className='gap-y-16'>
         {posts.map((post) => (

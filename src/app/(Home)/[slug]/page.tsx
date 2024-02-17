@@ -1,4 +1,4 @@
-import { allPages } from '.contentlayer/generated';
+import { getPage, getPages } from '@/lib/page';
 import { notFound } from 'next/navigation';
 import { format } from 'date-fns';
 
@@ -6,7 +6,13 @@ import { Separator } from '@/components/ui/separator';
 import Heading from '@/components/ui/Heading';
 import MdxRenderer from '@/components/MdxRenderer';
 
-export const dynamic = 'force-static';
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return getPages().map(({ slugAsParams }) => ({
+    slug: slugAsParams,
+  }));
+}
 
 type PageProps = {
   params: {
@@ -17,7 +23,7 @@ type PageProps = {
 const Page = ({ params }: PageProps) => {
   const { slug } = params;
 
-  const page = allPages.find((page) => page.slugAsParams === slug);
+  const page = getPage(slug);
 
   if (!page) return notFound();
 

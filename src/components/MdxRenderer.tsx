@@ -16,7 +16,11 @@ type MdxRendererProps = {
 const MdxRenderer = ({ code, className, showToc = false }: MdxRendererProps) => {
   const content = useMDXComponent(code)({
     components: {
-      h1: ({ children, ...props }) => <h1 {...props}>{children}</h1>,
+      h1: ({ children, ...props }) => (
+        <h1 className='text-3xl xs:text-4xl' {...props}>
+          {children}
+        </h1>
+      ),
       h2: ({ children, ...props }) => <h2 {...props}>{children}</h2>,
       h3: ({ children, ...props }) => <h3 {...props}>{children}</h3>,
       p: ({ children, ...props }) =>
