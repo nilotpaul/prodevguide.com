@@ -1,12 +1,24 @@
 import { getPage, getPages } from '@/lib/page';
 import { notFound } from 'next/navigation';
 import { format } from 'date-fns';
+import { constructMetadata } from '@/lib/metadata';
 
 import { Separator } from '@/components/ui/separator';
 import Heading from '@/components/ui/Heading';
 import MdxRenderer from '@/components/MdxRenderer';
 
 export const dynamicParams = false;
+
+export function generateMetadata({ params: { slug } }: PageProps) {
+  const page = getPage(slug);
+
+  if (!page) return constructMetadata({ notFound: true });
+
+  return constructMetadata({
+    title: page.title,
+    description: page.description,
+  });
+}
 
 export function generateStaticParams() {
   return getPages().map(({ slugAsParams }) => ({
@@ -30,7 +42,7 @@ const Page = ({ params }: PageProps) => {
   return (
     <div className='space-y-6'>
       <div className='space-y-2'>
-        <Heading>{page.title}</Heading>
+        <Heading classNames={{ separator: 'hidden' }}>{page.title}</Heading>
 
         <p className='text-lg font-semibold'>{page.description}</p>
         <p className='text-sm font-medium text-zinc-800 dark:text-zinc-400'>

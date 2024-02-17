@@ -9,8 +9,21 @@ import { Separator } from '@/components/ui/separator';
 import AuthorBar from '@/components/AuthorBar';
 import MdxRenderer from '@/components/MdxRenderer';
 import PostThumbnail from '@/components/PostThumbnail';
+import { constructMetadata } from '@/lib/metadata';
 
 export const dynamicParams = false;
+
+export function generateMetadata({ params }: PostPageProps) {
+  const post = getPublishedPost(params);
+
+  if (!post) return constructMetadata({ notFound: true });
+
+  return constructMetadata({
+    title: post.title,
+    description: post.description,
+    image: post.thumbnail,
+  });
+}
 
 export function generateStaticParams() {
   const posts = Categories.map(({ path }) => {

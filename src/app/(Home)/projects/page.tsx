@@ -1,8 +1,14 @@
 import { getRepos } from '@/lib/getRepos';
+import { Suspense } from 'react';
+import { constructMetadata } from '@/lib/metadata';
 
 import Heading from '@/components/ui/Heading';
 import ProjectsServer from './ProjectsServer';
-import { Suspense } from 'react';
+
+export const metadata = constructMetadata({
+  title: 'Projects',
+  description: 'Some projects I have worked on recently',
+});
 
 const ProjectsPage = () => {
   return (

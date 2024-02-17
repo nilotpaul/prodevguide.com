@@ -1,4 +1,5 @@
 import { defineDocumentType, makeSource, ComputedFields } from 'contentlayer/source-files';
+import { Categories, PostStatus, Tags } from './src/config';
 
 import remarkGfm from 'remark-gfm';
 import remarkBreaks from 'remark-breaks';
@@ -6,7 +7,6 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeSlug from 'rehype-slug';
 import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeToc from 'rehype-toc';
-import { Categories, PostStatus, Tags } from './src/config';
 
 const computedFields = {
   slug: {
@@ -70,7 +70,7 @@ export const Post = defineDocumentType(() => ({
       type: 'list',
       of: {
         type: 'string',
-        options: Tags,
+        options: Tags.map(({ name }) => name),
       },
       required: true,
     },

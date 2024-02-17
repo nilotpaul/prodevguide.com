@@ -5,6 +5,7 @@ import { format } from 'date-fns';
 import Image from 'next/image';
 import { CalendarIcon, ClockIcon } from '@radix-ui/react-icons';
 import { AspectRatio } from './ui/aspect-ratio';
+import PostTags from './PostTags';
 
 type PostPreviewProps = {
   post: Post;
@@ -39,13 +40,7 @@ const PostPreview = ({ post }: PostPreviewProps) => {
         </span>
       </p>
 
-      <div className='my-4 mb-6 space-x-3'>
-        {post.tags?.map((tag) => (
-          <span className='rounded-full bg-zinc-400 px-2.5 py-1 text-xs dark:bg-zinc-900' key={tag}>
-            {tag}
-          </span>
-        ))}
-      </div>
+      <PostTags tags={post.tags} />
 
       <p className='line-clamp-2 text-sm text-zinc-700 dark:text-zinc-400'>{post.description}</p>
     </article>

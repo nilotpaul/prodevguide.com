@@ -1,14 +1,17 @@
 import { Categories } from '@/config';
 import { getPosts } from '@/lib/post';
 import { createPostLink } from '@/lib/utils';
+import { constructMetadata } from '@/lib/metadata';
 
-import { Separator } from '@/components/ui/separator';
 import PostPreview from '@/components/PostPreview';
 import GridWrapper from '@/components/GridWrapper';
 import Link from 'next/link';
 import Heading from '@/components/ui/Heading';
 
-export const dynamicParams = false;
+export const metadata = constructMetadata({
+  title: 'Blog',
+  description: 'Collection of blog posts from all categories',
+});
 
 const BlogPage = () => {
   const posts = Categories.map(({ name }) => {
@@ -26,11 +29,7 @@ const BlogPage = () => {
         .filter(({ publishedPosts }) => publishedPosts.length !== 0)
         .map((item) => (
           <section className='my-12' key={item.category}>
-            <Heading className='mb-9 w-fit'>
-              {item.category}
-
-              <Separator className='mt-1.5 h-1 bg-rose dark:bg-rose' />
-            </Heading>
+            <Heading classNames={{ h1: 'mb-9 w-fit' }}>{item.category}</Heading>
 
             <GridWrapper>
               {item.publishedPosts.map((post) => (

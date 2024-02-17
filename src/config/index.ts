@@ -37,4 +37,17 @@ export const Categories = [
   },
 ];
 
-export const Tags = ['tag1', 'tag2', 'tag3'];
+export const Tags = [
+  {
+    name: 'tag1',
+    path: '/tag1',
+  },
+  {
+    name: 'tag2',
+    path: '/tag2',
+  },
+  {
+    name: 'tag3',
+    path: '/tag3',
+  },
+];

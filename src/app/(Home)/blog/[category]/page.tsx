@@ -2,12 +2,23 @@ import { notFound } from 'next/navigation';
 import { getPosts } from '@/lib/post';
 import { createPostLink } from '@/lib/utils';
 import { Categories } from '@/config';
+import { constructMetadata } from '@/lib/metadata';
 
-import { Separator } from '@/components/ui/separator';
 import PostPreview from '@/components/PostPreview';
 import GridWrapper from '@/components/GridWrapper';
 import Link from 'next/link';
 import Heading from '@/components/ui/Heading';
+
+export function generateMetadata({ params }: CategoryPageProps) {
+  const category = Categories.find(({ path }) => path.replace('/', '') === params.category);
+
+  if (!category || !category.name) return constructMetadata({ notFound: true });
+
+  return constructMetadata({
+    title: category.name,
+    description: category.description,
+  });
+}
 
 export function generateStaticParams() {
   return Categories.map(({ path }) => ({
@@ -30,8 +41,12 @@ const CategoryPage = ({ params }: CategoryPageProps) => {
 
   return (
     <div className='space-y-9'>
-      <Heading className='w-fit'>
-        {posts[0].category} <Separator className='mt-1.5 h-1 bg-rose dark:bg-rose' />
+      <Heading
+        classNames={{
+          h1: 'w-fit',
+        }}
+      >
+        {posts[0].category}
       </Heading>
 
       <GridWrapper>

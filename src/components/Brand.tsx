@@ -1,5 +1,7 @@
-import { cn } from '@/lib/utils';
+import { SITE_NAME } from '@/config/site';
 import Link, { LinkProps } from 'next/link';
+
+import { cn } from '@/lib/utils';
 
 type BrandProps = {
   className?: string;
@@ -12,7 +14,7 @@ const Brand = ({ className, ...props }: BrandProps) => {
       href='/'
       className={cn('cursor-pointer text-sm font-bold xs:text-base', className)}
     >
-      MyBlog.dev
+      {SITE_NAME}
     </Link>
   );
 };
