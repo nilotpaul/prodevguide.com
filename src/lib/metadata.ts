@@ -1,5 +1,5 @@
 import getUrl from '@/lib/utils';
-import { GITHUB_LINK, SITE_NAME, TWITTER_HANDLE } from '@/config/site';
+import { GITHUB_LINK, TWITTER_HANDLE } from '@/config/site';
 import { Metadata } from 'next';
 
 type TitleTemplate = {
@@ -9,8 +9,8 @@ type TitleTemplate = {
 };
 
 export function constructMetadata({
-  title = SITE_NAME,
-  description = 'website desc',
+  title = 'ProDev Guide',
+  description = 'Sharing helpful insights and real-world advice for developers, building a community and growing together.',
   image = '/site.png',
   icons = '/favicon.ico',
   noIndex = false,
@@ -24,18 +24,16 @@ export function constructMetadata({
   notFound?: boolean;
 } = {}): Metadata {
   return {
-    title,
-    description,
+    ...(notFound
+      ? {
+          title: 'Not Found',
+          description: 'This page does not exist',
+        }
+      : {
+          title,
+          description,
+        }),
     openGraph: {
-      ...(notFound
-        ? {
-            title: 'Not Found',
-            description: 'This page does not exist',
-          }
-        : {
-            title,
-            description,
-          }),
       images: [
         {
           url: image,

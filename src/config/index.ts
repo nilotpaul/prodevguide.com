@@ -51,3 +51,11 @@ export const Tags = [
     path: '/tag3',
   },
 ];
+
+export const ALL_LINKS = [
+  ...NAV_MENU,
+  {
+    name: 'Tags',
+    path: '/tags',
+  },
+];

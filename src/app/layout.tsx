@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = constructMetadata({
   title: {
-    default: SITE_NAME,
+    default: 'ProDev Guide',
     template: `%s | ${SITE_NAME}`,
   },
 });
@@ -24,7 +24,7 @@ export default function RootLayout({
     <html lang='en'>
       <body className={cn('min-h-screen max-w-full antialiased', inter.className)}>
         <Providers>
-          <main>{children}</main>
+          <main className='h-full w-full'>{children}</main>
 
           <div
             className='absolute inset-x-0 -top-40 -z-10 overflow-hidden opacity-80 blur-3xl xs:opacity-90 sm:opacity-50'
