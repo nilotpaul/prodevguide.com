@@ -15,6 +15,7 @@
 
 # production
 /build
+/dist
 
 # misc
 .DS_Store
@@ -38,3 +39,21 @@ next-env.d.ts
 
 # Contentlayer
 .contentlayer
+
+# sst
+.sst
+
+# open-next
+.open-next
+
+# sst
+.sst
+
+# open-next
+.open-next
+
+# sst
+.sst
+
+# open-next
+.open-next
