@@ -7,7 +7,7 @@ import { Separator } from '@/components/ui/separator';
 import Heading from '@/components/ui/Heading';
 import MdxRenderer from '@/components/MdxRenderer';
 
-export const dynamicParams = false;
+// export const dynamicParams = false;
 
 export function generateMetadata({ params: { slug } }: PageProps) {
   const page = getPage(slug);
@@ -20,11 +20,11 @@ export function generateMetadata({ params: { slug } }: PageProps) {
   });
 }
 
-export function generateStaticParams() {
-  return getPages().map(({ slugAsParams }) => ({
-    slug: slugAsParams,
-  }));
-}
+// export function generateStaticParams() {
+//   return getPages().map(({ slugAsParams }) => ({
+//     slug: slugAsParams,
+//   }));
+// }
 
 type PageProps = {
   params: {
