@@ -20,11 +20,11 @@ export function generateMetadata({ params: { slug } }: PageProps) {
   });
 }
 
-// export function generateStaticParams() {
-//   return getPages().map(({ slugAsParams }) => ({
-//     slug: slugAsParams,
-//   }));
-// }
+export function generateStaticParams() {
+  return getPages().map(({ slugAsParams }) => ({
+    slug: slugAsParams,
+  }));
+}
 
 type PageProps = {
   params: {
