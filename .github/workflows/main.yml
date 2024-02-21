@@ -32,5 +32,13 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
+      - name: Load .env file
+        uses: natterstefan/action-next-env@v1
+        with:
+          environment: prod
+
       - name: Deploy to AWS
-        run: env GH_ACCESS_TOKEN=${{ env.GH_ACCESS_TOKEN }} && pnpm sst deploy --stage prod
+        run: pnpm sst deploy --stage prod
+        env:
+          GH_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
+          GH_ACCESS_TOKEN: ${{ env.GH_ACCESS_TOKEN }}
