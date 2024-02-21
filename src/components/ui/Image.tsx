@@ -11,12 +11,12 @@ type ImageProps = {
 const Image = async ({ mode = 'local', blur = false, src, ...props }: ImageProps) => {
   const imageUrl = mode === 'local' ? `${getUrl(`/assets${src}`)}` : src;
 
-  const blurDataUrl = await getBlurDataUrl(imageUrl as string);
+  const blurDataURL = await getBlurDataUrl(imageUrl as string);
 
   return (
     <NextImage
       src={imageUrl}
-      blurDataURL={blurDataUrl}
+      blurDataURL={blurDataURL}
       placeholder={blur ? 'blur' : 'empty'}
       {...props}
     />

@@ -8,6 +8,9 @@ dependencies:
   '-':
     specifier: ^0.0.1
     version: 0.0.1
+  '@plaiceholder/next':
+    specifier: ^3.0.0
+    version: 3.0.0(next@14.1.0)(plaiceholder@3.0.0)(sharp@0.33.2)
   '@radix-ui/react-accordion':
     specifier: ^1.1.2
     version: 1.1.2(@types/react-dom@18.2.19)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
@@ -142,6 +145,9 @@ devDependencies:
   '@types/express':
     specifier: ^4.17.21
     version: 4.17.21
+  '@types/lqip-modern':
+    specifier: ^1.1.7
+    version: 1.1.7
   '@types/node':
     specifier: ^20
     version: 20.11.17
@@ -3368,6 +3374,18 @@ packages:
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
     dev: true
 
+  /@plaiceholder/next@3.0.0(next@14.1.0)(plaiceholder@3.0.0)(sharp@0.33.2):
+    resolution: {integrity: sha512-7UK/H1X64hwo2VaxOPKMXE+OY9IgmKLPsq/xKHZ+gU07oqQSfIWWIgpVVucMB3ZgVYah+68agR15BRuSxAuMHw==}
+    peerDependencies:
+      next: '>= 10.0.0'
+      plaiceholder: '>=3.0.0'
+      sharp: '>= 0.30.6'
+    dependencies:
+      next: 14.1.0(@babel/core@7.23.9)(@opentelemetry/api@1.7.0)(react-dom@18.2.0)(react@18.2.0)
+      plaiceholder: 3.0.0(sharp@0.33.2)
+      sharp: 0.33.2
+    dev: false
+
   /@protobufjs/aspromise@1.1.2:
     resolution: {integrity: sha512-j+gKExEuLmKwvz3OgROXtrJ2UG2x8Ch2YZUxahh+s1F2HZ+wAceUNLkvy6zKCPVRkU++ZWQrdxsUeQXmcg4uoQ==}
     dev: false
@@ -4660,6 +4678,13 @@ packages:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
     dev: true
 
+  /@types/lqip-modern@1.1.7:
+    resolution: {integrity: sha512-TwC2Z1aDkT7TQNTkYbg1KqgqIAri1U3TTUVgc65HAG6EpuJTHLOi6VrMAVq2f+jDhhEqFXpnvRc3ZAljSI8ibw==}
+    dependencies:
+      '@types/node': 20.11.17
+      '@types/sharp': 0.31.1
+    dev: true
+
   /@types/mdast@3.0.15:
     resolution: {integrity: sha512-LnwD+mUEfxWMa1QpDraczIn6k0Ee3SMicuYSSzS6ZYl2gKS09EClnJYGd8Du6rfc5r/GZEk5o1mRb8TaTj03sQ==}
     dependencies:
@@ -4747,6 +4772,12 @@ packages:
     dependencies:
       '@types/http-errors': 2.0.4
       '@types/mime': 3.0.4
+      '@types/node': 20.11.17
+    dev: true
+
+  /@types/sharp@0.31.1:
+    resolution: {integrity: sha512-5nWwamN9ZFHXaYEincMSuza8nNfOof8nmO+mcI+Agx1uMUk4/pQnNIcix+9rLPXzKrm1pS34+6WRDbDV0Jn7ag==}
+    dependencies:
       '@types/node': 20.11.17
     dev: true
 

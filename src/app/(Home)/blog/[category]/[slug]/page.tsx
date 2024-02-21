@@ -1,6 +1,5 @@
 import { getAuthorByName } from '@/lib/author';
 import { getPosts, getPublishedPost } from '@/lib/post';
-import { calculateReadingTime } from '@/lib/utils';
 import { notFound } from 'next/navigation';
 import { Categories } from '@/config';
 import { format } from 'date-fns';
@@ -50,15 +49,13 @@ const PostPage = ({ params }: PostPageProps) => {
 
   if (!post || !author) return notFound();
 
-  const readingTime = calculateReadingTime(post.body.raw);
-
   return (
     <div className='space-y-2'>
       <h1 className='mb-6 text-4xl font-bold xs:mb-8'>{post.title}</h1>
       <p className='py-2 text-sm font-semibold leading-8 md:text-base'>{post.description}</p>
 
       <p className='pb-4 pt-2 text-sm font-medium'>
-        {format(post.publishedDate, 'MMM dd, yyyy')} - {readingTime} min read
+        {format(post.publishedDate, 'MMM dd, yyyy')} - {post.readingTime} min read
       </p>
 
       <AuthorBar name={author.name} image={author.image} link={author.link} />

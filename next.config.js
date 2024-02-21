@@ -11,7 +11,11 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'dev5602.d19p3rgknm7vr.amplifyapp.com',
+        hostname: 'dev5602.d19p3rgknm7vr.amplifyapp.com', // static
+      },
+      {
+        protocol: 'https',
+        hostname: 'https://dd04hxjrw6b1a.cloudfront.net', // sst
       },
     ],
   },
@@ -22,7 +26,7 @@ const nextConfig = {
       permanent: true,
     },
   ],
-  output: 'export',
+  // output: 'export',
   reactStrictMode: true,
   compress: true,
   optimizeFonts: true,

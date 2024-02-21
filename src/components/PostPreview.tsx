@@ -1,5 +1,4 @@
 import { Post } from '.contentlayer/generated';
-import { calculateReadingTime } from '@/lib/utils';
 import { format } from 'date-fns';
 
 import { CalendarIcon, ClockIcon } from '@radix-ui/react-icons';
@@ -12,8 +11,6 @@ type PostPreviewProps = {
 };
 
 const PostPreview = ({ post }: PostPreviewProps) => {
-  const readingTime = calculateReadingTime(post.body.raw);
-
   return (
     <article className='flex cursor-pointer flex-col transition duration-300 hover:scale-[1.02]'>
       <AspectRatio ratio={3 / 1} className='relative'>
@@ -21,8 +18,8 @@ const PostPreview = ({ post }: PostPreviewProps) => {
           src={post.thumbnail}
           alt={post.title}
           fill
-          className='h-full w-full rounded-md object-fill'
           blur
+          className='h-full w-full rounded-md object-fill'
         />
       </AspectRatio>
 
@@ -36,12 +33,18 @@ const PostPreview = ({ post }: PostPreviewProps) => {
           <span>{format(post.publishedDate, 'MMM, dd, yyyy')}</span>
           <span>|</span>
           <span className='flex gap-x-1.5'>
-            <ClockIcon /> {readingTime} min read
+            <ClockIcon /> {post.readingTime} min read
           </span>
         </span>
       </p>
 
-      <PostTags tags={post.tags} />
+      <div className='my-4 mb-6 space-x-3'>
+        {post.tags?.map((tag) => (
+          <span className='rounded-full bg-zinc-400 px-2.5 py-1 text-xs dark:bg-zinc-900' key={tag}>
+            {tag}
+          </span>
+        ))}
+      </div>
 
       <p className='line-clamp-2 text-sm text-zinc-700 dark:text-zinc-400'>{post.description}</p>
     </article>

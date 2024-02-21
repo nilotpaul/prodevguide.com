@@ -1,7 +1,7 @@
 import { Repo } from '@/types';
 
 export const getRepos = async (): Promise<Repo[]> => {
-  const ACCESS_TOKEN = process.env.GITHUB_ACCESS_TOKEN || process.env.CICD_GITHUB_ACCESS_TOKEN;
+  const ACCESS_TOKEN = process.env.GH_ACCESS_TOKEN;
 
   if (!ACCESS_TOKEN) {
     throw new Error('No github access token');

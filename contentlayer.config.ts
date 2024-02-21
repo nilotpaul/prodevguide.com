@@ -1,5 +1,6 @@
 import { defineDocumentType, makeSource, ComputedFields } from 'contentlayer/source-files';
 import { Categories, PostStatus, Tags } from './src/config';
+import { calculateReadingTime } from './src/lib/utils';
 
 import remarkGfm from 'remark-gfm';
 import remarkBreaks from 'remark-breaks';
@@ -90,6 +91,10 @@ export const Post = defineDocumentType(() => ({
     headings: {
       type: 'json',
       resolve: (doc) => doc.body.raw.match(/^(#{1,3})\s(.*)$/gm),
+    },
+    readingTime: {
+      type: 'number',
+      resolve: (doc) => calculateReadingTime(doc.body.raw),
     },
   },
 }));
