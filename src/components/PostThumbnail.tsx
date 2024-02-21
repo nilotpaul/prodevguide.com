@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import { AspectRatio } from './ui/aspect-ratio';
+import Image from './ui/Image';
 
 type PostThumbnailProps = {
   image: string;

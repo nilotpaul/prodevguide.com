@@ -1,11 +1,11 @@
 import { useMDXComponent } from 'next-contentlayer/hooks';
+import { ImageProps } from 'next/image';
 
 import Link from 'next/link';
+import Toc from './Toc';
+import Image from './ui/Image';
 import { Button } from './ui/button';
 import { cn } from '@/lib/utils';
-import Image, { ImageProps } from 'next/image';
-import { AspectRatio } from './ui/aspect-ratio';
-import Toc from './Toc';
 
 type MdxRendererProps = {
   code: string;

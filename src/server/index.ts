@@ -7,7 +7,7 @@ import dotenv from 'dotenv';
 import serverless from 'serverless-http';
 
 dotenv.config({
-  path: path.resolve(__dirname, '../'),
+  path: path.resolve(__dirname, '../', '../', '.env.local'),
 });
 
 const PORT = Number(process.env.PORT) || 3000;

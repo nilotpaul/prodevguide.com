@@ -30,8 +30,8 @@ export const calculateReadingTime = (text: string): number => {
 export default function getUrl(url: string) {
   if (typeof window !== 'undefined') return url;
 
-  if (process.env.NEXT_URL) {
-    return `${process.env.NEXT_URL}${url}`;
+  if (process.env.NEXT_PUBLIC_SITE_URL) {
+    return `${process.env.NEXT_PUBLIC_SITE_URL}${url}`;
   } else {
     return `http://localhost:3000${url}`;
   }

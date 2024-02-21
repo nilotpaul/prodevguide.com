@@ -3,12 +3,15 @@ const { withContentlayer } = require('next-contentlayer');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    // loader: 'custom',
-    // loaderFile: './loader.ts',
+    // unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'github.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'dev5602.d19p3rgknm7vr.amplifyapp.com',
       },
     ],
   },
@@ -19,6 +22,7 @@ const nextConfig = {
       permanent: true,
     },
   ],
+  output: 'export',
   reactStrictMode: true,
   compress: true,
   optimizeFonts: true,

@@ -2,10 +2,10 @@ import { Post } from '.contentlayer/generated';
 import { calculateReadingTime } from '@/lib/utils';
 import { format } from 'date-fns';
 
-import Image from 'next/image';
 import { CalendarIcon, ClockIcon } from '@radix-ui/react-icons';
 import { AspectRatio } from './ui/aspect-ratio';
 import PostTags from './PostTags';
+import Image from './ui/Image';
 
 type PostPreviewProps = {
   post: Post;
@@ -22,6 +22,7 @@ const PostPreview = ({ post }: PostPreviewProps) => {
           alt={post.title}
           fill
           className='h-full w-full rounded-md object-fill'
+          blur
         />
       </AspectRatio>
 

@@ -11,8 +11,6 @@ import MdxRenderer from '@/components/MdxRenderer';
 import PostThumbnail from '@/components/PostThumbnail';
 import { constructMetadata } from '@/lib/metadata';
 
-export const dynamicParams = false;
-
 export function generateMetadata({ params }: PostPageProps) {
   const post = getPublishedPost(params);
 
