@@ -33,4 +33,4 @@ jobs:
         run: pnpm install
 
       - name: Deploy to AWS
-        run: cross-env GH_ACCESS_TOKEN=${{ env.GH_ACCESS_TOKEN }} && pnpm sst deploy --stage prod
+        run: env GH_ACCESS_TOKEN=${{ env.GH_ACCESS_TOKEN }} && pnpm sst deploy --stage prod
