@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -34,8 +34,15 @@ jobs:
 
       - name: Load .env file
         uses: natterstefan/action-next-env@v1
-        with:
-          environment: prod
+
+      - name: Check if GH_ACCESS_TOKEN is defined
+        run: |
+          if [ -z "${{ secrets.GH_ACCESS_TOKEN }}" ]; then
+            echo "GH_ACCESS_TOKEN is not defined. Please add the secret in your repository settings."
+            exit 1
+          else
+            echo "GH_ACCESS_TOKEN is defined."
+          fi
 
       - name: Deploy to AWS
         run: pnpm sst deploy --stage prod
