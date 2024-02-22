@@ -5,7 +5,7 @@ import { constructMetadata } from '@/lib/metadata';
 import Heading from '@/components/ui/Heading';
 import ProjectsServer from './ProjectsServer';
 
-export const dynamic = 'force-static';
+export const revalidate = 0;
 
 export const metadata = constructMetadata({
   title: 'Projects',
