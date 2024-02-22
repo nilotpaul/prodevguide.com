@@ -27,7 +27,7 @@ jobs:
           node-version: 18.17.1
 
       - name: Install Dependencies
-        run: npm install --force && rm -rf node_modules/sharp && npm install --force --platform=linux --arch=arm64v8 sharp
+        run: npm install --force && npm install --force --platform=linux --arch=x64 sharp
 
       - name: Setup Environment Variables
         run: |
