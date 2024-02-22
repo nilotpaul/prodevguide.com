@@ -32,7 +32,7 @@ export const getAssets = (url: string) => {
 
   const ASSETS_URL = process.env.ASSETS_BUCKET_URL;
 
-  if (process.env.AWS_BUCKET_NAME) {
+  if (ASSETS_URL) {
     return `${ASSETS_URL}/assets${url}`;
   } else {
     return `/assets${url}`;
