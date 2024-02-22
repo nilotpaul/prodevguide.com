@@ -26,11 +26,9 @@ jobs:
         with:
           node-version: 18.17.1
 
-      - name: Install Bun
-        uses: oven-sh/setup-bun@v1
-
       - name: Install Dependencies
-        run: bun install
+        run: npm install --force --os=linux --cpu=arm64 --include=optional
+
       - name: Setup Environment Variables
         run: |
           echo "GH_ACCESS_TOKEN=${{ secrets.GH_ACCESS_TOKEN }}" > .env.local
@@ -38,4 +36,4 @@ jobs:
           echo "NEXT_PUBLIC_SITE_URL=${{ secrets.NEXT_PUBLIC_SITE_URL }}" >> .env.local
 
       - name: Deploy to AWS
-        run: bunx sst deploy --stage prod
+        run: npx sst deploy --stage prod
