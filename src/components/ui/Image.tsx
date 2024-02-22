@@ -1,4 +1,5 @@
 import { getBlurDataUrl } from '@/lib/getBlurDataUrl';
+import { getAssets } from '@/lib/utils';
 
 import NextImage, { ImageProps as NextImageProps } from 'next/image';
 
@@ -8,15 +9,15 @@ type ImageProps = {
 } & Omit<NextImageProps, 'loader'>;
 
 const Image = async ({ mode = 'local', blur = false, src, ...props }: ImageProps) => {
-  const imageUrl = mode === 'local' ? `/assets${src}` : src;
+  const imageUrl = mode === 'local' ? getAssets(src as string) : src;
 
-  // const blurDataURL = await getBlurDataUrl(imageUrl as string);
+  const blurDataURL = await getBlurDataUrl(imageUrl as string);
 
   return (
     <NextImage
       src={imageUrl}
-      // blurDataURL={blurDataURL}
-      // placeholder={blur ? 'blur' : 'empty'}
+      blurDataURL={blurDataURL}
+      placeholder={blur ? 'blur' : 'empty'}
       {...props}
     />
   );

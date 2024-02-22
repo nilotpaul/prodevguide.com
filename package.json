@@ -10,7 +10,7 @@
     "build:custom": "cross-env NODE_ENV=production pnpm build:server && pnpm copyfiles && pnpm build:next",
     "copyfiles": "copyfiles -u 1 \"src/**/*.{html,css,scss,ttf,woff,woff2,eot,svg,jpg,png}\" dist/",
     "start:custom": "cross-env NODE_ENV=production node dist/index.js",
-    "dev:aws": "sst bind next dev",
+    "dev:sst": "sst bind next dev",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

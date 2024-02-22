@@ -27,6 +27,18 @@ export const calculateReadingTime = (text: string): number => {
   return readTime;
 };
 
+export const getAssets = (url: string) => {
+  if (typeof window !== 'undefined') return url;
+
+  const ASSETS_URL = process.env.ASSETS_BUCKET_URL;
+
+  if (process.env.AWS_BUCKET_NAME) {
+    return `${ASSETS_URL}/assets${url}`;
+  } else {
+    return `/assets${url}`;
+  }
+};
+
 export default function getUrl(url: string) {
   if (typeof window !== 'undefined') return url;
 
