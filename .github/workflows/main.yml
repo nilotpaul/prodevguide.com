@@ -26,13 +26,8 @@ jobs:
         with:
           node-version: 18.17.1
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8.14.0
-
       - name: Install Dependencies
-        run: pnpm install
+        run: npm install && npm install --cpu=x64 --os=linux --libc=musl sharp
 
       - name: Setup Environment Variables
         run: |
@@ -41,4 +36,4 @@ jobs:
           echo "NEXT_PUBLIC_SITE_URL=${{ secrets.NEXT_PUBLIC_SITE_URL }}" >> .env.local
 
       - name: Deploy to AWS
-        run: pnpm sst deploy --stage prod
+        run: npx sst deploy --stage prod
