@@ -9,7 +9,6 @@ env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   AWS_REGION: us-east-1
-  GH_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
 
 jobs:
   deploy:
@@ -32,19 +31,10 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
-      - name: Load .env file
-        uses: natterstefan/action-next-env@v1
-
-      - name: Check if GH_ACCESS_TOKEN is defined
+      - name: Setup Environment Variables
         run: |
-          if [ -z "${{ secrets.GH_ACCESS_TOKEN }}" ]; then
-            echo "GH_ACCESS_TOKEN is not defined. Please add the secret in your repository settings."
-            exit 1
-          else
-            echo "GH_ACCESS_TOKEN is defined."
-          fi
+          echo 'GH_ACCESS_TOKEN=${{ secrets.GH_ACCESS_TOKEN }}' > .env.local
+          echo 'NEXT_PUBLIC_SITE_URL=${{ secrets.NEXT_PUBLIC_SITE_URL }}' >> .env.local
 
       - name: Deploy to AWS
         run: pnpm sst deploy --stage prod
-        env:
-          GH_ACCESS_TOKEN: ${{ env.GH_ACCESS_TOKEN }}
