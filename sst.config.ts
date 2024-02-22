@@ -1,5 +1,10 @@
 import { SSTConfig } from 'sst';
 import { NextjsSite } from 'sst/constructs';
+import dotenv from 'dotenv';
+
+dotenv.config({
+  path: './.env.local',
+});
 
 export default {
   config(_input) {

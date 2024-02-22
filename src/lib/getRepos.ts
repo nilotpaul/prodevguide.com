@@ -13,6 +13,7 @@ export const getRepos = async (): Promise<Repo[]> => {
       'Content-type': 'application/json',
       Authorization: `Bearer ${ACCESS_TOKEN}`,
     },
+    cache: 'force-cache',
   });
 
   if (!res.ok) {

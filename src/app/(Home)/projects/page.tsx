@@ -5,8 +5,6 @@ import { constructMetadata } from '@/lib/metadata';
 import Heading from '@/components/ui/Heading';
 import ProjectsServer from './ProjectsServer';
 
-export const revalidate = 0;
-
 export const metadata = constructMetadata({
   title: 'Projects',
   description: 'Some projects I have worked on recently',
