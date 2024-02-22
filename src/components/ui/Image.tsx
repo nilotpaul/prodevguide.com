@@ -1,5 +1,7 @@
-import { getBlurDataUrl } from '@/lib/getBlurDataUrl';
-import { getAssets } from '@/lib/utils';
+'use client';
+
+import { useState } from 'react';
+import { cn, getAssets } from '@/lib/utils';
 
 import NextImage, { ImageProps as NextImageProps } from 'next/image';
 
@@ -8,16 +10,20 @@ type ImageProps = {
   blur?: boolean;
 } & Omit<NextImageProps, 'loader'>;
 
-const Image = async ({ mode = 'local', blur = false, src, ...props }: ImageProps) => {
-  const imageUrl = mode === 'local' ? getAssets(src as string) : src;
+const Image = ({ mode = 'local', blur = false, src, className, ...props }: ImageProps) => {
+  const [isLoading, setIsLoading] = useState(true);
 
-  const blurDataURL = await getBlurDataUrl(imageUrl as string);
+  // const imageUrl = mode === 'local' ? getAssets(src as string) : src;
 
   return (
     <NextImage
-      src={imageUrl}
-      blurDataURL={blurDataURL}
-      placeholder={blur ? 'blur' : 'empty'}
+      src={src}
+      onLoad={() => setIsLoading(false)}
+      className={cn(
+        'transition-opacity duration-300',
+        isLoading ? 'opacity-0' : 'opacity-100',
+        className
+      )}
       {...props}
     />
   );
