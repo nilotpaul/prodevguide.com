@@ -36,8 +36,8 @@ jobs:
 
       - name: Setup Environment Variables
         run: |
-          echo "GH_ACCESS_TOKEN=${{ secrets.GH_ACCESS_TOKEN }}" > .env.local
           echo "ASSETS_BUCKET_URL=${{ secrets.ASSETS_BUCKET_URL }}" >> .env.local
+          echo "GH_ACCESS_TOKEN=${{ secrets.GH_ACCESS_TOKEN }}" > .env.local
           echo "NEXT_PUBLIC_SITE_URL=${{ secrets.NEXT_PUBLIC_SITE_URL }}" >> .env.local
 
       - name: Deploy to AWS

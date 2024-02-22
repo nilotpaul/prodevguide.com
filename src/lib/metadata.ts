@@ -1,6 +1,6 @@
-import getUrl from '@/lib/utils';
 import { GITHUB_LINK, TWITTER_HANDLE } from '@/config/site';
 import { Metadata } from 'next';
+import getUrl from './utils';
 
 type TitleTemplate = {
   default: string;
@@ -49,7 +49,7 @@ export function constructMetadata({
       creator: TWITTER_HANDLE,
     },
     icons,
-    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'),
+    metadataBase: new URL(getUrl('')),
     ...(noIndex && {
       robots: {
         index: false,

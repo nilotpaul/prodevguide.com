@@ -1,3 +1,4 @@
+import { env } from '../validations/env';
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -30,7 +31,7 @@ export const calculateReadingTime = (text: string): number => {
 export const getAssets = (url: string) => {
   if (typeof window !== 'undefined') return url;
 
-  const ASSETS_URL = process.env.ASSETS_BUCKET_URL;
+  const ASSETS_URL = env.ASSETS_BUCKET_URL;
 
   if (ASSETS_URL) {
     return `${ASSETS_URL}/assets${url}`;
@@ -42,8 +43,8 @@ export const getAssets = (url: string) => {
 export default function getUrl(url: string) {
   if (typeof window !== 'undefined') return url;
 
-  if (process.env.NEXT_PUBLIC_SITE_URL) {
-    return `${process.env.NEXT_PUBLIC_SITE_URL}${url}`;
+  if (env.NEXT_PUBLIC_SITE_URL) {
+    return `${env.NEXT_PUBLIC_SITE_URL}${url}`;
   } else {
     return `http://localhost:3000${url}`;
   }
