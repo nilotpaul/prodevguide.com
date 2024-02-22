@@ -1,14 +1,13 @@
 import { getPostsByTag } from '@/lib/post';
 import { createPostLink } from '@/lib/utils';
 import { Tags } from '@/config';
+import { notFound } from 'next/navigation';
 import { constructMetadata } from '@/lib/metadata';
 
 import Heading from '@/components/ui/Heading';
 import PostPreview from '@/components/PostPreview';
 import GridWrapper from '@/components/GridWrapper';
 import Link from '@/components/ui/Link';
-
-export const dynamicParams = false;
 
 export function generateMetadata({ params }: TagPageProps) {
   const tag = Tags.find(({ path }) => path.replace('/', '') === params.tag);
@@ -37,6 +36,10 @@ const page = ({ params }: TagPageProps) => {
   const { tag } = params;
 
   const posts = getPostsByTag({ tag });
+
+  if (!posts || posts.length === 0) {
+    return notFound();
+  }
 
   return (
     <>
