@@ -34,7 +34,7 @@ jobs:
 
       - name: Setup Environment Variables
         run: |
-          echo "NEXT_PUBLIC_API_KEY=${{ secrets.GH_ACCESS_TOKEN }}" > .env.local
+          echo "GH_ACCESS_TOKEN=${{ secrets.GH_ACCESS_TOKEN }}" > .env.local
 
       - name: Deploy to AWS
         run: pnpm sst deploy --stage prod
