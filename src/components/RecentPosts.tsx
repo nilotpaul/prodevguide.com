@@ -4,7 +4,7 @@ import { createPostLink } from '@/lib/utils';
 import GridWrapper from './GridWrapper';
 import PostPreview from './PostPreview';
 import Heading from './ui/Heading';
-import Link from 'next/link';
+import Link from '@/components/ui/Link';
 
 const RecentPosts = () => {
   const posts = getRecentPosts(6);

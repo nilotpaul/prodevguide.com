@@ -1,7 +1,7 @@
 import { Repo } from '@/types';
 import { format } from 'date-fns';
 
-import Link from 'next/link';
+import Link from '@/components/ui/Link';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/card';
 
 type ProjectCardProps = {

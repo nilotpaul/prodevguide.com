@@ -1,7 +1,7 @@
 import { Categories } from '@/config';
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './ui/accordion';
-import Link from 'next/link';
+import Link from '@/components/ui/Link';
 
 type HeaderCardMobileProps = {
   children: React.ReactNode;

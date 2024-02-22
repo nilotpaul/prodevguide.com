@@ -5,7 +5,7 @@ import { constructMetadata } from '@/lib/metadata';
 
 import PostPreview from '@/components/PostPreview';
 import GridWrapper from '@/components/GridWrapper';
-import Link from 'next/link';
+import Link from '@/components/ui/Link';
 import Heading from '@/components/ui/Heading';
 
 export const metadata = constructMetadata({

@@ -11,7 +11,7 @@ const AWS_BUCKET_NAME = process.env.AWS_BUCKET_NAME;
 const ASSETS_FOLDER_PATH = 'public/assets';
 
 const uploadAssets = (filePath) => {
-  const command = `aws s3 cp ${filePath} s3://${`${AWS_BUCKET_NAME}/assets/`}`;
+  const command = `aws s3 cp ${filePath} s3://${`${AWS_BUCKET_NAME}/_assets/assets/`}`;
   execSync(command, { stdio: 'inherit' });
 };
 

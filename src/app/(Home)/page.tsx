@@ -1,7 +1,7 @@
 import { GITHUB_LINK } from '@/config/site';
 
 import RecentPosts from '@/components/RecentPosts';
-import Link from 'next/link';
+import Link from '@/components/ui/Link';
 import { Button } from '@/components/ui/button';
 import Heading from '@/components/ui/Heading';
 

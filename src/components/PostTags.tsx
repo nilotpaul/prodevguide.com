@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils';
-import Link from 'next/link';
+import Link from '@/components/ui/Link';
 import { Button } from './ui/button';
 
 type PostTagsProps = {

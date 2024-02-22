@@ -6,7 +6,7 @@ import { constructMetadata } from '@/lib/metadata';
 import Heading from '@/components/ui/Heading';
 import PostPreview from '@/components/PostPreview';
 import GridWrapper from '@/components/GridWrapper';
-import Link from 'next/link';
+import Link from '@/components/ui/Link';
 
 export const dynamicParams = false;
 

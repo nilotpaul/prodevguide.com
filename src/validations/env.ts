@@ -4,10 +4,10 @@ import { z } from 'zod';
 export const env = createEnv({
   server: {
     GH_ACCESS_TOKEN: z.string().min(1),
-    ASSETS_BUCKET_URL: z.string().url(),
+    ASSETS_BUCKET_URL: z.string().url().optional(),
   },
   client: {
-    NEXT_PUBLIC_SITE_URL: z.string().url(),
+    NEXT_PUBLIC_SITE_URL: z.string().url().optional(),
   },
   runtimeEnv: {
     GH_ACCESS_TOKEN: process.env.GH_ACCESS_TOKEN,

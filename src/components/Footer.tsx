@@ -5,7 +5,7 @@ import { SOCIAL_LINKS } from '@/config/site';
 import { toast } from 'sonner';
 
 import { Button } from './ui/button';
-import Link from 'next/link';
+import Link from '@/components/ui/Link';
 import { cn } from '@/lib/utils';
 import Container from './ui/Container';
 

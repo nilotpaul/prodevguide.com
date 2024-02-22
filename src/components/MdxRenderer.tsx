@@ -1,7 +1,7 @@
+import { ComponentProps } from 'react';
 import { useMDXComponent } from 'next-contentlayer/hooks';
-import { ImageProps } from 'next/image';
 
-import Link from 'next/link';
+import Link from '@/components/ui/Link';
 import Toc from './Toc';
 import Image from './ui/Image';
 import { Button } from './ui/button';
@@ -30,11 +30,20 @@ const MdxRenderer = ({ code, className, showToc = false }: MdxRendererProps) => 
           <Link href={href || ''}>{children}</Link>
         </Button>
       ),
-      Image: ({ src, height, width, alt, className, ...props }: ImageProps) => (
+      Image: ({
+        src,
+        height,
+        width,
+        alt,
+        className,
+        mode = 'local',
+        ...props
+      }: ComponentProps<typeof Image>) => (
         <Image
           src={src}
           height={height}
           width={width}
+          mode={mode}
           alt={alt ?? 'Post Image'}
           className={cn(
             'h-full w-full rounded-md object-fill shadow-lg shadow-zinc-400 dark:shadow-zinc-900',

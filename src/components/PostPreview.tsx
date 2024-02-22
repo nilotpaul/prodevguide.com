@@ -3,7 +3,6 @@ import { format } from 'date-fns';
 
 import { CalendarIcon, ClockIcon } from '@radix-ui/react-icons';
 import { AspectRatio } from './ui/aspect-ratio';
-import PostTags from './PostTags';
 import Image from './ui/Image';
 
 type PostPreviewProps = {

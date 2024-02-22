@@ -8,11 +8,10 @@ import { Button } from './ui/button';
 import { Cross1Icon, HamburgerMenuIcon } from '@radix-ui/react-icons';
 import Brand from './Brand';
 import ThemeToggle from './ThemeToggle';
-import Link from 'next/link';
+import Link from '@/components/ui/Link';
 import Container from './ui/Container';
 import HeaderHoverCard from './HeaderHoverCard';
 import HeaderCardMobile from './HeaderCardMobile';
-import { ArrowDownIcon } from '@radix-ui/react-icons';
 import { cn } from '@/lib/utils';
 import { ChevronDown } from 'lucide-react';
 
@@ -44,9 +43,13 @@ const Header = () => {
                       className={cn({
                         'text-blue-500 underline': isActive,
                       })}
-                      asChild
                     >
-                      <Link className='flex items-center gap-2' href={item.path} key={item.path}>
+                      <Link
+                        prefetch
+                        className='flex items-center gap-2'
+                        href={item.path}
+                        key={item.path}
+                      >
                         {item.name}
                         <ChevronDown className='h-3.5 w-3.5' />
                       </Link>
@@ -66,7 +69,7 @@ const Header = () => {
                   })}
                   asChild
                 >
-                  <Link href={item.path} key={item.path}>
+                  <Link prefetch href={item.path} key={item.path}>
                     {item.name}
                   </Link>
                 </Button>
@@ -127,7 +130,7 @@ const Header = () => {
                       onClick={() => setIsOpen(false)}
                       asChild
                     >
-                      <Link href={item.path} key={item.path}>
+                      <Link prefetch href={item.path} key={item.path}>
                         {item.name}
                       </Link>
                     </Button>
@@ -147,7 +150,7 @@ const Header = () => {
                   onClick={() => setIsOpen(false)}
                   asChild
                 >
-                  <Link href={item.path} key={item.path}>
+                  <Link prefetch href={item.path} key={item.path}>
                     {item.name}
                   </Link>
                 </Button>

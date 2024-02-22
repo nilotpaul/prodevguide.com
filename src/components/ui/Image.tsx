@@ -13,11 +13,11 @@ type ImageProps = {
 const Image = ({ mode = 'local', blur = false, src, className, ...props }: ImageProps) => {
   const [isLoading, setIsLoading] = useState(true);
 
-  // const imageUrl = mode === 'local' ? getAssets(src as string) : src;
+  const imageUrl = mode === 'local' ? `/assets${src}` : src;
 
   return (
     <NextImage
-      src={src}
+      src={imageUrl}
       onLoad={() => setIsLoading(false)}
       className={cn(
         'transition-opacity duration-300',

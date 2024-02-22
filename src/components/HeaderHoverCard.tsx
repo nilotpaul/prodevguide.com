@@ -1,7 +1,7 @@
 import { Categories } from '@/config';
 
 import { HoverCard, HoverCardContent, HoverCardTrigger } from './ui/hover-card';
-import Link from 'next/link';
+import Link from '@/components/ui/Link';
 
 type HeaderHoverCardProps = {
   children: React.ReactNode;
