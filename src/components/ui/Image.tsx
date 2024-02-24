@@ -11,11 +11,13 @@ import { Skeleton } from './skeleton';
 type ImageProps = {
   mode?: 'local' | 'external';
   blur?: boolean;
+  ratio?: string;
 } & Omit<NextImageProps, 'loader'>;
 
 const Image = ({
   mode = 'local',
   blur = false,
+  ratio,
   src,
   className,
   height,
@@ -45,7 +47,8 @@ const Image = ({
       <Skeleton
         aria-disabled='true'
         className={cn(
-          `h-[${height}] w-[${width}]`,
+          height && width && `h-[${height}] w-[${width}]`,
+          ratio && `aspect-[${ratio}]`,
           {
             hidden: !isLoading,
           },

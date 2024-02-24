@@ -14,6 +14,7 @@ const PostThumbnail = ({ image, alt }: PostThumbnailProps) => {
         blur
         src={image}
         fill
+        ratio='16/9'
         mode='local'
         alt={alt}
         className='my-4 rounded-md object-cover'

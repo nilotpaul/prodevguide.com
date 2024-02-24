@@ -46,7 +46,7 @@ const MdxRenderer = ({ code, className, showToc = false }: MdxRendererProps) => 
           mode={mode}
           alt={alt ?? 'Post Image'}
           className={cn(
-            'h-full w-full rounded-md object-fill shadow-lg shadow-zinc-400 dark:shadow-zinc-900',
+            'my-8 h-full w-full rounded-md object-fill shadow-lg shadow-zinc-400 dark:shadow-zinc-900',
             className
           )}
           {...props}
