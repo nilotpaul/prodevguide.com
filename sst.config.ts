@@ -20,6 +20,7 @@ export default {
           GH_ACCESS_TOKEN: process.env.GH_ACCESS_TOKEN!,
           ASSETS_BUCKET_URL: process.env.ASSETS_BUCKET_URL!,
           NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL!,
+          NEXT_PUBLIC_SITE_MODE: process.env.NEXT_PUBLIC_SITE_MODE!,
         },
       });
 

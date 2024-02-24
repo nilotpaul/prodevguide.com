@@ -8,10 +8,12 @@ export const env = createEnv({
   },
   client: {
     NEXT_PUBLIC_SITE_URL: z.string().url().optional(),
+    NEXT_PUBLIC_SITE_MODE: z.enum(['static', 'dynamic']),
   },
   runtimeEnv: {
     GH_ACCESS_TOKEN: process.env.GH_ACCESS_TOKEN,
     ASSETS_BUCKET_URL: process.env.ASSETS_BUCKET_URL,
     NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
+    NEXT_PUBLIC_SITE_MODE: process.env.NEXT_PUBLIC_SITE_MODE,
   },
 });

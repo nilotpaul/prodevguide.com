@@ -29,8 +29,6 @@ export const calculateReadingTime = (text: string): number => {
 };
 
 export const getAssets = (url: string) => {
-  if (typeof window !== 'undefined') return url;
-
   const ASSETS_URL = env.ASSETS_BUCKET_URL;
 
   if (ASSETS_URL) {
