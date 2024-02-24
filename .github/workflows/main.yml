@@ -12,6 +12,7 @@ env:
   GH_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
   ASSETS_BUCKET_URL: ${{ secrets.ASSETS_BUCKET_URL }}
   NEXT_PUBLIC_SITE_URL: ${{ secrets.NEXT_PUBLIC_SITE_URL }}
+  NEXT_PUBLIC_SITE_MODE: ${{ secrets.NEXT_PUBLIC_SITE_MODE }}
 
 jobs:
   deploy:
@@ -39,6 +40,7 @@ jobs:
           echo "ASSETS_BUCKET_URL=${{ secrets.ASSETS_BUCKET_URL }}" > .env.local
           echo "GH_ACCESS_TOKEN=${{ secrets.GH_ACCESS_TOKEN }}" >> .env.local
           echo "NEXT_PUBLIC_SITE_URL=${{ secrets.NEXT_PUBLIC_SITE_URL }}" >> .env.local
+          echo "NEXT_PUBLIC_SITE_MODE=${{ secrets.NEXT_PUBLIC_SITE_MODE }}" >> .env.local
 
       - name: Deploy to AWS
         run: pnpm sst deploy --stage prod
