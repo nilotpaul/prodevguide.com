@@ -6,7 +6,7 @@ import { format } from 'date-fns';
 
 import { Separator } from '@/components/ui/separator';
 import AuthorBar from '@/components/AuthorBar';
-import MdxRenderer from '@/components/MdxRenderer';
+import MdxRenderer from '@/components/mdx/MdxRenderer';
 import PostThumbnail from '@/components/PostThumbnail';
 import { constructMetadata } from '@/lib/metadata';
 

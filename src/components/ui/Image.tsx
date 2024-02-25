@@ -3,10 +3,10 @@
 import { useState } from 'react';
 import { loader } from '@/lib/loader';
 import { env } from '@/validations/env';
-import { cn } from '@/lib/utils';
 
 import NextImage, { ImageProps as NextImageProps } from 'next/image';
 import { Skeleton } from './skeleton';
+import { cn } from '@/lib/utils';
 
 type ImageProps = {
   mode?: 'local' | 'external';
@@ -37,24 +37,25 @@ const Image = ({
         width={width}
         onLoad={() => setIsLoading(false)}
         className={cn(
-          'transition-opacity duration-300',
-          isLoading ? 'opacity-0' : 'opacity-100',
+          'opacity-100 transition-opacity duration-300',
+          {
+            'max-h-0 max-w-0 opacity-0': isLoading,
+          },
           className
         )}
         loader={staticSite ? loader : undefined}
         {...props}
       />
-      <Skeleton
-        aria-disabled='true'
-        className={cn(
-          height && width && `h-[${height}] w-[${width}]`,
-          ratio && `aspect-[${ratio}]`,
-          {
-            hidden: !isLoading,
-          },
-          className
-        )}
-      />
+
+      {isLoading && (
+        <Skeleton
+          aria-disabled='true'
+          className={cn(
+            height && width && `h-[${height.toString()}px] w-[${width.toString()}px]`,
+            className
+          )}
+        />
+      )}
     </>
   );
 };

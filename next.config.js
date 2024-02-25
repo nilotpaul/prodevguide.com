@@ -34,7 +34,7 @@ const nextConfig = {
   compress: true,
   optimizeFonts: true,
   swcMinify: true,
-  pageExtensions: ['mdx', 'ts', 'tsx'],
+  pageExtensions: ['md', 'mdx', 'ts', 'tsx'],
 };
 
 module.exports = withContentlayer(nextConfig);

@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = constructMetadata({
   title: {
-    default: 'ProDev Guide',
+    default: SITE_NAME,
     template: `%s | ${SITE_NAME}`,
   },
 });

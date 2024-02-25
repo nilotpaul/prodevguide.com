@@ -1,4 +1,4 @@
-import { GITHUB_LINK, TWITTER_HANDLE } from '@/config/site';
+import { GITHUB_LINK, SITE_DESCRIPTION, TWITTER_HANDLE } from '@/config/site';
 import { Metadata } from 'next';
 import getUrl from './utils';
 
@@ -10,7 +10,7 @@ type TitleTemplate = {
 
 export function constructMetadata({
   title = 'ProDev Guide',
-  description = 'Sharing helpful insights and real-world advice for developers, building a community and growing together.',
+  description = SITE_DESCRIPTION,
   image = '/site.png',
   icons = '/favicon.ico',
   noIndex = false,

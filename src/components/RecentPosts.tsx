@@ -20,9 +20,9 @@ const RecentPosts = () => {
       </Heading>
 
       <GridWrapper className='gap-y-16'>
-        {posts.map((post) => (
+        {posts.map((post, index) => (
           <Link href={`/blog${createPostLink(post)}`} key={post._id}>
-            <PostPreview post={post} />
+            <PostPreview post={post} priority={index <= 2} />
           </Link>
         ))}
       </GridWrapper>

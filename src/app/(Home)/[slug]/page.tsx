@@ -5,7 +5,7 @@ import { constructMetadata } from '@/lib/metadata';
 
 import { Separator } from '@/components/ui/separator';
 import Heading from '@/components/ui/Heading';
-import MdxRenderer from '@/components/MdxRenderer';
+import MdxRenderer from '@/components/mdx/MdxRenderer';
 
 export function generateMetadata({ params: { slug } }: PageProps) {
   const page = getPage(slug);

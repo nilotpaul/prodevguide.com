@@ -32,7 +32,6 @@
     "@t3-oss/env-nextjs": "^0.7.3",
     "@tailwindcss/typography": "^0.5.10",
     "@types/dotenv": "^8.2.0",
-    "D": "^1.0.0",
     "archiver": "^6.0.1",
     "child_process": "^1.0.2",
     "class-variance-authority": "^0.7.0",

@@ -46,9 +46,9 @@ const page = ({ params }: TagPageProps) => {
       <Heading>Posts with {tag}</Heading>
 
       <GridWrapper>
-        {posts.map((post) => (
+        {posts.map((post, index) => (
           <Link key={post._id} href={`/blog${createPostLink(post)}`}>
-            <PostPreview post={post} />
+            <PostPreview post={post} priority={index <= 2} />
           </Link>
         ))}
       </GridWrapper>

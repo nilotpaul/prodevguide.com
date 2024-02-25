@@ -32,9 +32,9 @@ const BlogPage = () => {
             <Heading classNames={{ h1: 'mb-9 w-fit' }}>{item.category}</Heading>
 
             <GridWrapper>
-              {item.publishedPosts.map((post) => (
+              {item.publishedPosts.map((post, index) => (
                 <Link href={`/blog${createPostLink(post)}`} key={post._id}>
-                  <PostPreview post={post} />
+                  <PostPreview post={post} priority={index <= 2} />
                 </Link>
               ))}
             </GridWrapper>

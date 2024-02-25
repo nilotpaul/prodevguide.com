@@ -8,16 +8,15 @@ type PostThumbnailProps = {
 
 const PostThumbnail = ({ image, alt }: PostThumbnailProps) => {
   return (
-    <AspectRatio ratio={16 / 9} className='shadow-xl shadow-zinc-400 dark:shadow-blue-950'>
+    <AspectRatio ratio={16 / 9} className='relative shadow-xl shadow-zinc-400 dark:shadow-blue-950'>
       <Image
+        src={image}
+        alt={alt}
         priority
         blur
-        src={image}
         fill
-        ratio='16/9'
         mode='local'
-        alt={alt}
-        className='my-4 rounded-md object-cover'
+        className='my-4 h-full w-full rounded-md object-cover'
       />
     </AspectRatio>
   );

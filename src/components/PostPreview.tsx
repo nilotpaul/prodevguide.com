@@ -7,9 +7,10 @@ import Image from './ui/Image';
 
 type PostPreviewProps = {
   post: Post;
+  priority?: boolean;
 };
 
-const PostPreview = ({ post }: PostPreviewProps) => {
+const PostPreview = ({ post, priority = false }: PostPreviewProps) => {
   return (
     <article className='flex cursor-pointer flex-col transition duration-300 hover:scale-[1.02]'>
       <AspectRatio ratio={3 / 1} className='relative'>
@@ -17,6 +18,7 @@ const PostPreview = ({ post }: PostPreviewProps) => {
           src={post.thumbnail}
           alt={post.title}
           fill
+          priority={priority}
           blur
           className='h-full w-full rounded-md object-fill'
         />
@@ -39,7 +41,7 @@ const PostPreview = ({ post }: PostPreviewProps) => {
 
       <div className='my-4 mb-6 space-x-3'>
         {post.tags?.map((tag) => (
-          <span className='rounded-full bg-zinc-400 px-2.5 py-1 text-xs dark:bg-zinc-900' key={tag}>
+          <span key={tag} className='rounded-full bg-zinc-400 px-2.5 py-1 text-xs dark:bg-zinc-900'>
             {tag}
           </span>
         ))}

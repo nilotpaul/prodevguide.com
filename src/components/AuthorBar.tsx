@@ -22,9 +22,9 @@ const AuthorBar = ({ name, image, link }: AuthorBarProps) => {
             height={30}
           />
         )}
-        <div className='text-sm xs:text-base sm:text-base'>
+        <div className='text-sm'>
           Written by
-          <Button className='px-1 text-sm xs:text-base sm:text-base' variant='link' asChild>
+          <Button className='px-1 text-sm' variant='link' asChild>
             <Link target='_blank' href={link || ''}>
               {name}
             </Link>

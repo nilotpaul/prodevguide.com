@@ -115,6 +115,9 @@ export const Page = defineDocumentType(() => ({
       type: 'string',
       required: true,
     },
+    lastUpdated: {
+      type: 'date',
+    },
   },
   computedFields,
 }));
