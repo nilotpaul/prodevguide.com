@@ -21,6 +21,7 @@ const nextConfig = {
         hostname: 's3.amazonaws.com',
       },
     ],
+    minimumCacheTTL: 86400, // 1 day
   },
   redirects: async () => [
     {

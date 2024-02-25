@@ -1,5 +1,6 @@
-import { cn } from '@/lib/utils';
+import { heading } from '@/config/fonts';
 import { Separator } from './separator';
+import { cn } from '@/lib/utils';
 
 type HeadingProps = {
   classNames?: {
@@ -10,7 +11,14 @@ type HeadingProps = {
 
 const Heading = ({ classNames, children, ...props }: HeadingProps) => {
   return (
-    <h1 {...props} className={cn('mb-8 w-fit text-3xl font-bold xs:text-4xl', classNames?.h1)}>
+    <h1
+      {...props}
+      className={cn(
+        'font-headings mb-8 w-fit text-3xl font-bold xs:text-4xl',
+        classNames?.h1,
+        heading.className
+      )}
+    >
       {children}
       <Separator className={cn('mt-1.5 h-[2.5px] bg-rose dark:bg-rose', classNames?.separator)} />
     </h1>

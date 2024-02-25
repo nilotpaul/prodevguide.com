@@ -2,6 +2,7 @@ import { getAuthorByName } from '@/lib/author';
 import { getPosts, getPublishedPost } from '@/lib/post';
 import { notFound } from 'next/navigation';
 import { Categories } from '@/config';
+import { getAssets } from '@/lib/utils';
 import { format } from 'date-fns';
 
 import { Separator } from '@/components/ui/separator';
@@ -9,6 +10,7 @@ import AuthorBar from '@/components/AuthorBar';
 import MdxRenderer from '@/components/mdx/MdxRenderer';
 import PostThumbnail from '@/components/PostThumbnail';
 import { constructMetadata } from '@/lib/metadata';
+import Heading from '@/components/ui/Heading';
 
 export function generateMetadata({ params }: PostPageProps) {
   const post = getPublishedPost(params);
@@ -18,7 +20,7 @@ export function generateMetadata({ params }: PostPageProps) {
   return constructMetadata({
     title: post.title,
     description: post.description,
-    image: post.thumbnail,
+    image: getAssets(post.thumbnail),
   });
 }
 
@@ -51,7 +53,14 @@ const PostPage = ({ params }: PostPageProps) => {
 
   return (
     <div className='space-y-2'>
-      <h1 className='mb-6 text-4xl font-bold xs:mb-8'>{post.title}</h1>
+      <Heading
+        classNames={{
+          h1: 'mb-6 text-4xl font-bold xs:mb-8',
+          separator: 'hidden',
+        }}
+      >
+        {post.title}
+      </Heading>
       <p className='py-2 text-sm font-semibold leading-8 md:text-base'>{post.description}</p>
 
       <p className='pb-4 pt-2 text-sm font-medium'>

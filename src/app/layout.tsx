@@ -1,12 +1,10 @@
 import { constructMetadata } from '@/lib/metadata';
 import { SITE_NAME } from '@/config/site';
-import { Inter } from 'next/font/google';
+import { paragraph } from '@/config/fonts';
 
 import Providers from '@/lib/Providers';
 import { cn } from '@/lib/utils';
 import './globals.css';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = constructMetadata({
   title: {
@@ -22,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={cn('min-h-screen max-w-full antialiased', inter.className)}>
+      <body className={cn('min-h-screen max-w-full antialiased', paragraph.className)}>
         <Providers>
           <main className='h-full w-full'>{children}</main>
 

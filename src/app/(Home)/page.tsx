@@ -15,11 +15,11 @@ const HomePage = () => {
             separator: 'hidden',
           }}
         >
-          Welcome to the blog! I&apos;m Paul.
+          Welcome to my blog! I&apos;m Paul.
         </Heading>
         <p className='-mt-2 w-2/3 text-lg sm:text-xl'>I share my learnings and other stuff.</p>
 
-        <div className='my-6 space-x-3'>
+        <div className='my-6 mt-10 space-x-3'>
           <Button className='xs:text-base sm:text-sm' variant='special' asChild>
             <Link target='_blank' href={GITHUB_LINK}>
               GitHub

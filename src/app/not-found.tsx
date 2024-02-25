@@ -16,9 +16,9 @@ export default function NotFound() {
           </h1>
 
           <div className='flex flex-col items-center justify-center gap-6'>
-            <p className='text-lg md:text-xl'>This page doesn&apos;t exist</p>
+            <p className='text-lg md:text-xl'>Page not found</p>
 
-            <Button className='mx-auto w-fit text-base font-medium' asChild>
+            <Button size='sm' className='mx-auto w-fit font-semibold tracking-wide' asChild>
               <Link href='/'>Return Home</Link>
             </Button>
           </div>
