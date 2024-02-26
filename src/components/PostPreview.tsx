@@ -8,23 +8,28 @@ import Image from './ui/Image';
 type PostPreviewProps = {
   post: Post;
   priority?: boolean;
+  thumbnail?: boolean;
 };
 
-const PostPreview = ({ post, priority = false }: PostPreviewProps) => {
+const PostPreview = ({ post, thumbnail = true, priority = false }: PostPreviewProps) => {
   return (
-    <article className='flex cursor-pointer flex-col transition duration-300 hover:scale-[1.02]'>
-      <AspectRatio ratio={3 / 1} className='relative'>
-        <Image
-          src={post.thumbnail}
-          alt={post.title}
-          fill
-          priority={priority}
-          blur
-          className='h-full w-full rounded-md object-fill'
-        />
-      </AspectRatio>
+    <article className='group flex cursor-pointer flex-col transition duration-300 hover:scale-[1.02]'>
+      {thumbnail && (
+        <AspectRatio ratio={3 / 1} className='relative'>
+          <Image
+            src={post.thumbnail}
+            alt={post.title}
+            fill
+            priority={priority}
+            blur
+            className='h-full w-full rounded-md object-fill'
+          />
+        </AspectRatio>
+      )}
 
-      <h2 className='mt-3 text-xl font-bold'>{post.title}</h2>
+      <h2 className='mt-3 text-xl font-bold transition-colors group-hover:text-rose xs:text-2xl sm:text-xl'>
+        {post.title}
+      </h2>
       <p
         className='inline-flex gap-x-1.5 py-2 text-xs font-medium
         text-zinc-700 dark:text-zinc-400'

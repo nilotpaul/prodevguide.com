@@ -23,6 +23,16 @@ export default {
           NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL!,
           NEXT_PUBLIC_SITE_MODE: process.env.NEXT_PUBLIC_SITE_MODE!,
         },
+        dev: {
+          deploy: process.env.NODE_ENV !== 'production',
+          url: 'http://localhost:3000',
+        },
+        edge: true,
+        assets: {
+          nonVersionedFilesTTL: 86400,
+          versionedFilesTTL: 86400,
+        },
+        buildCommand: process.env.NODE_ENV !== 'production' ? 'next build' : 'next dev',
       });
 
       stack.addOutputs({
