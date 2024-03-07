@@ -116,6 +116,9 @@ dependencies:
   sharp:
     specifier: ^0.32.6
     version: 0.32.6
+  simple-icons:
+    specifier: ^11.7.0
+    version: 11.7.0
   sonner:
     specifier: ^1.4.0
     version: 1.4.0(react-dom@18.2.0)(react@18.2.0)
@@ -10763,6 +10766,11 @@ packages:
       decompress-response: 6.0.0
       once: 1.4.0
       simple-concat: 1.0.1
+    dev: false
+
+  /simple-icons@11.7.0:
+    resolution: {integrity: sha512-ecsOO6vPi3tf21BMZDw4gYI8ouaSq9mfFlBxBU8WEfcA+8Pz217jxM29K6YkGfO0dszakrcfHK1rrAr9vIfpkQ==}
+    engines: {node: '>=0.12.18'}
     dev: false
 
   /simple-swizzle@0.2.2:

@@ -1,31 +1,30 @@
 import { getRecentPosts } from '@/lib/post';
 import { createPostLink } from '@/lib/utils';
 
-import GridWrapper from './GridWrapper';
 import PostPreview from './PostPreview';
 import Heading from './ui/Heading';
 import Link from '@/components/ui/Link';
 
 const RecentPosts = () => {
-  const posts = getRecentPosts(6);
+  const posts = getRecentPosts(4);
 
   return (
     <div className='w-full'>
       <Heading
         classNames={{
-          h1: 'text-2xl xs:text-3xl',
+          h1: 'text-2xl xs:text-3xl pl-2.5',
         }}
       >
         Recent Posts
       </Heading>
 
-      <GridWrapper className='gap-y-16'>
+      <div className='flex flex-col gap-y-12'>
         {posts.map((post, index) => (
           <Link href={`/blog${createPostLink(post)}`} key={post._id}>
-            <PostPreview post={post} thumbnail={false} priority={index <= 2} />
+            <PostPreview post={post} type='padded' thumbnail={false} priority={index <= 2} />
           </Link>
         ))}
-      </GridWrapper>
+      </div>
     </div>
   );
 };

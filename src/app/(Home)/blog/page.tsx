@@ -1,6 +1,6 @@
 import { Categories } from '@/config';
 import { getPosts } from '@/lib/post';
-import { createPostLink } from '@/lib/utils';
+import { cn, createPostLink } from '@/lib/utils';
 import { constructMetadata } from '@/lib/metadata';
 
 import PostPreview from '@/components/PostPreview';
@@ -27,8 +27,8 @@ const BlogPage = () => {
     <>
       {posts
         .filter(({ publishedPosts }) => publishedPosts.length !== 0)
-        .map((item) => (
-          <section className='my-12' key={item.category}>
+        .map((item, index) => (
+          <section className={cn('my-24', { 'my-0': index === 0 })} key={item.category}>
             <Heading classNames={{ h1: 'mb-9 w-fit' }}>{item.category}</Heading>
 
             <GridWrapper>

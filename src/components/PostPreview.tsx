@@ -4,16 +4,30 @@ import { format } from 'date-fns';
 import { CalendarIcon, ClockIcon } from '@radix-ui/react-icons';
 import { AspectRatio } from './ui/aspect-ratio';
 import Image from './ui/Image';
+import { cn } from '@/lib/utils';
 
 type PostPreviewProps = {
   post: Post;
   priority?: boolean;
   thumbnail?: boolean;
+  type?: 'default' | 'padded';
 };
 
-const PostPreview = ({ post, thumbnail = true, priority = false }: PostPreviewProps) => {
+const PostPreview = ({
+  post,
+  thumbnail = true,
+  priority = false,
+  type = 'default',
+}: PostPreviewProps) => {
   return (
-    <article className='group flex cursor-pointer flex-col transition duration-300 hover:scale-[1.02]'>
+    <article
+      className={cn(
+        'group flex cursor-pointer flex-col transition duration-300 hover:scale-[1.02]',
+        {
+          'rounded-sm p-3 hover:bg-gray-900': type === 'padded',
+        }
+      )}
+    >
       {thumbnail && (
         <AspectRatio ratio={3 / 1} className='relative'>
           <Image
@@ -27,7 +41,14 @@ const PostPreview = ({ post, thumbnail = true, priority = false }: PostPreviewPr
         </AspectRatio>
       )}
 
-      <h2 className='mt-3 text-xl font-bold transition-colors group-hover:text-rose xs:text-2xl sm:text-xl'>
+      <h2
+        className={cn(
+          'my-2 mt-4 text-xl font-bold transition-colors group-hover:text-rose xs:text-2xl sm:text-xl',
+          {
+            'mt-0': type === 'padded',
+          }
+        )}
+      >
         {post.title}
       </h2>
       <p
