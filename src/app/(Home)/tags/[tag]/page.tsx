@@ -8,6 +8,7 @@ import Heading from '@/components/ui/Heading';
 import PostPreview from '@/components/PostPreview';
 import GridWrapper from '@/components/GridWrapper';
 import Link from '@/components/ui/Link';
+import EmptyFallback from '@/components/EmptyFallback';
 
 export function generateMetadata({ params }: TagPageProps) {
   const tag = Tags.find(({ path }) => path.replace('/', '') === params.tag);
@@ -37,21 +38,25 @@ const page = ({ params }: TagPageProps) => {
 
   const posts = getPostsByTag({ tag });
 
-  if (!posts || posts.length === 0) {
+  if (!posts) {
     return notFound();
   }
 
   return (
     <>
-      <Heading>Posts with {tag}</Heading>
+      <Heading>Posts with {tag.replaceAll('-', ' ')}</Heading>
 
-      <GridWrapper>
-        {posts.map((post, index) => (
-          <Link key={post._id} href={`/blog${createPostLink(post)}`}>
-            <PostPreview post={post} priority={index <= 2} />
-          </Link>
-        ))}
-      </GridWrapper>
+      {posts.length !== 0 ? (
+        <GridWrapper>
+          {posts.map((post, index) => (
+            <Link key={post._id} href={`/blog${createPostLink(post)}`}>
+              <PostPreview post={post} priority={index <= 2} />
+            </Link>
+          ))}
+        </GridWrapper>
+      ) : (
+        <EmptyFallback />
+      )}
     </>
   );
 };

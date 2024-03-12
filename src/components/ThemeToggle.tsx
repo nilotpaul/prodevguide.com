@@ -4,10 +4,9 @@ import { useTheme } from 'next-themes';
 import { useMounted } from '@/hooks/useMounted';
 
 import { Button } from './ui/button';
-import { Sun } from 'lucide-react';
-import { MoonIcon } from '@radix-ui/react-icons';
 import { Skeleton } from './ui/skeleton';
 import { cn } from '@/lib/utils';
+import { Icons } from './Icons';
 
 type ThemeToggleProps = {
   className?: string;
@@ -20,8 +19,13 @@ const ThemeToggle = ({ className }: ThemeToggleProps) => {
 
   if (!isMounted) {
     return (
-      <Button size='icon' variant='ghost' className='hidden h-8 w-8 sm:inline-flex'>
-        <Skeleton className='xs:w-6 xs:h-6 h-5 w-5 rounded-full' />
+      <Button
+        aria-disabled='true'
+        size='icon'
+        variant='ghost'
+        className='hidden h-8 w-8 sm:inline-flex'
+      >
+        <Skeleton className='h-5 w-5 rounded-full xs:h-6 xs:w-6' />
       </Button>
     );
   }
@@ -41,9 +45,9 @@ const ThemeToggle = ({ className }: ThemeToggleProps) => {
       }}
     >
       {theme === 'dark' ? (
-        <Sun className='xs:w-6 xs:h-6 h-5 w-5 text-yellow-500 sm:h-5 sm:w-5' />
+        <Icons.sun className='h-5 w-5 text-yellow-500 xs:h-6 xs:w-6 sm:h-5 sm:w-5' />
       ) : (
-        <MoonIcon className='xs:w-6 xs:h-6 h-5 w-5 sm:h-5 sm:w-5' />
+        <Icons.moon className='h-5 w-5 xs:h-6 xs:w-6 sm:h-5 sm:w-5' />
       )}
     </Button>
   );

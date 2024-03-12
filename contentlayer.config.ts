@@ -1,6 +1,7 @@
 import { defineDocumentType, makeSource, ComputedFields } from 'contentlayer/source-files';
 import { Categories, PostStatus, Tags } from './src/config';
 import { calculateReadingTime } from './src/lib/utils';
+import { postProcess, preProcess } from './src/lib/plugins/rehype-pre-raw';
 
 import remarkGfm from 'remark-gfm';
 import remarkBreaks from 'remark-breaks';
@@ -92,6 +93,7 @@ export const Post = defineDocumentType(() => ({
       type: 'json',
       resolve: (doc) => doc.body.raw.match(/^(#{1,3})\s(.*)$/gm),
     },
+
     readingTime: {
       type: 'number',
       resolve: (doc) => calculateReadingTime(doc.body.raw),
@@ -128,6 +130,7 @@ export default makeSource({
   mdx: {
     remarkPlugins: [remarkGfm, remarkBreaks],
     rehypePlugins: [
+      preProcess,
       rehypeSlug,
       [
         rehypeAutolinkHeadings,
@@ -141,6 +144,18 @@ export default makeSource({
         rehypePrettyCode,
         {
           theme: 'tokyo-night',
+          defaultLang: 'shell',
+          onVisitLine(node: any) {
+            // Prevent lines from collapsing in `display: grid` mode, and
+            // allow empty lines to be copy/pasted
+            if (node.children.length === 0) {
+              node.children = [{ type: 'text', value: ' ' }];
+            }
+            node.properties.className = ['line']; // add 'line' class to each line in the code block
+          },
+          onVisitHighlightedLine(node: any) {
+            node.properties.className?.push('line--highlighted');
+          },
         },
       ],
       [
@@ -149,10 +164,11 @@ export default makeSource({
         {
           headings: ['h1', 'h2', 'h3'],
           cssClasses: {
-            link: 'xs:text-base sm:text-sm font-semibold ',
+            link: 'xs:text-base sm:text-sm font-semibold dark:text-zinc-200 ',
           },
         },
       ],
+      postProcess,
     ],
   },
 });

@@ -57,7 +57,7 @@ const PostPage = ({ params }: PostPageProps) => {
     <>
       <Heading
         classNames={{
-          h1: 'mb-6 text-4xl font-bold xs:mb-8',
+          h1: 'mb-6 text-4xl font-bold leading-snug xs:leading-snug xs:mb-8',
           separator: 'hidden',
         }}
       >

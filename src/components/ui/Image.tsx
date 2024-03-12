@@ -39,7 +39,7 @@ const Image = ({
         className={cn(
           'opacity-100 transition-opacity duration-300',
           {
-            'max-h-0 max-w-0 opacity-0': isLoading,
+            'opacity-0': isLoading,
           },
           className
         )}

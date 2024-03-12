@@ -14,8 +14,8 @@ export const metadata = constructMetadata({
 });
 
 const BlogPage = () => {
-  const posts = Categories.map(({ name }) => {
-    const publishedPosts = getPosts(name);
+  const posts = Categories.map(({ path, name }) => {
+    const publishedPosts = getPosts(path.replace('/', ''));
 
     return {
       category: name,

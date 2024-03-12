@@ -21,7 +21,7 @@ const nextConfig = {
         hostname: 's3.amazonaws.com',
       },
     ],
-    minimumCacheTTL: 86400, // 1 day
+    minimumCacheTTL: process.env.NODE_ENV !== 'production' ? 60 : 86400, // 1 day
   },
   redirects: async () => [
     {
@@ -31,6 +31,9 @@ const nextConfig = {
     },
   ],
   // output: 'export',
+  experimental: {
+    mdxRs: false,
+  },
   reactStrictMode: true,
   compress: true,
   optimizeFonts: true,

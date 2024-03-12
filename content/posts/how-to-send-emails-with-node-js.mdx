@@ -1,0 +1,367 @@
+---
+title: 'How to Send Emails with Node.js: 2 Easy Options'
+description: Learn how to send emails with node.js using nodemailer library and via email API service. Explanation with code examples and best practices.
+thumbnail: /how-to-send-emails-with-node-js/thumbnail.png
+category: Tutorials
+tags:
+  - node-js
+  - express-js
+  - apis
+status: published
+authors:
+  - paul
+publishedDate: 2024-02-16
+---
+
+These days, every web application needs a reliable method for sending emails. Whether it's for user authentication, account notifications, or communicating with customers, email functionality is essential for modern web development.
+
+In this guide, we'll learn to send emails from a Node.js application. By the end, you'll have the knowledge and tools you need to ensure seamless email communication in your web projects.
+
+# How to send emails using node.js
+
+There are two easy options to send email which are:
+
+- Nodemailer
+- Email api service like <Link href='https://app.brevo.com' target='_blank'>Brevo</Link>
+
+But which is better?
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead />
+      <TableHead>Nodemailer</TableHead>
+      <TableHead className='text-right'>Email api service</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell className='font-semibold'>Cost</TableCell>
+      <TableCell>Yes</TableCell>
+      <TableCell>No</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className='font-semibold'>Email server required</TableCell>
+      <TableCell>Pay for server, logging & maintenance</TableCell>
+      <TableCell>Subscription based</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className='font-semibold'>Managing Expertise</TableCell>
+      <TableCell>High</TableCell>
+      <TableCell>Low</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className='font-semibold'>Scalability</TableCell>
+      <TableCell>Hard</TableCell>
+      <TableCell>Easy</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+## What is Nodemailer?
+
+Nodemailer is the most popular Node.js library for sending emails. It makes working with emails very easy using various email providers and services. It abstracts the logic of using an email protocol like SMTP(Simple Mail Transfer Protocol) and provides an efficient way for sending emails.
+
+### Advantages of using Nodemailer?
+
+- **Versatility**: It supports various email transport methods, including SMTP, sendmail, Amazon SES, and more, providing developers with flexibility in choosing the most suitable option for their use case.
+- **Reliability**: Nodemailer follows best practices for email security, including support for SSL/TLS encryption and authentication mechanisms.
+- **Security**: It follows best practices for email security, including support for SSL/TLS encryption and authentication mechanisms.
+
+## What is an email API service?
+
+These services provide dedicated APIs and infrastructure for sending and managing emails, eliminating the need to set up and maintain your own email servers. And, you pay based on usage, rather than fixed hardware costs.
+
+### Advantages of using an email API service?
+
+- **Cost**: Email API services often offer flexible pricing plans that allow you to pay only for the emails you send, making them a cost-effective solution for businesses of all sizes.
+- **Features**: Many email API services offer advanced features for personalizing and segmenting email content, tracking delivery metrics, managing subscriber lists, and handling bouncebacks and spam complaints.
+- **Customer Support**: Most email API services provide dedicated customer support to help you troubleshoot issues, optimize, etc.
+
+# How to send email using Nodemailer and SMTP
+
+<Link children='Nodemailer' href='https://nodemailer.com' target='_blank' />
+is the most popular choice for sending emails from a node app. This library has built-in smtp support
+and you can customise your emails using html, plain text, etc.
+
+Let's get started!
+
+1. **Install Packages**: Run the following command to install necessary packages.
+
+```shell
+npm install express dotenv nodemailer
+```
+
+2. **Create a Transporter**: Setup an email transporter using the email service of your choice. In this case we'll be using <Link href='https://app.brevo.com' target='_blank'>Brevo</Link>.
+
+Go to <Link href='https://app.brevo.com' target='_blank'>Brevo</Link> -> <Link href='https://app.brevo.com/settings/keys/smtp' target='_blank'>SMTP & API</Link>, get the login and generate a new smtp key and put those in a .env file.
+
+<Image
+  src='/how-to-send-emails-with-node-js/image-1.png'
+  alt='Brevo SMTP & API Key'
+  height={500}
+  width={500}
+/>
+
+```js title="email.js"
+const nodemailer = require('nodemailer');
+
+const transporter = nodemailer.createTransport({
+  host: 'smtp-relay.brevo.com',
+  port: 587,
+  secure: false, // true for port 465
+  auth: {
+    user: process.env.BREVO_USER,
+    pass: process.env.BREVO_SMTP_KEY,
+  },
+});
+```
+
+3. **Send Email helper**: Create a `sendEmail{:js}` function that'll send an email to the provided email address. It's a good practice to keep your services seperate from other logic.
+
+```js title="email.js"
+const sendEmail = async ({ email, subject, message }) => {
+  const htmlContent = `
+  <html>
+    <body>
+      <h1>Hello!</h1>
+      <p>${message}</p>
+    </body>
+  </html>
+`;
+
+  const info = await transporter.sendMail({
+    from: process.env.ADMIN_EMAIL,
+    to: email,
+    subject,
+    html: htmlContent,
+  });
+
+  if (info.rejected.length !== 0) {
+    return { success: false };
+  }
+
+  return { success: true };
+};
+
+module.exports = {
+  sendEmail,
+};
+```
+
+In the above code, we used our email transporter which takes parameter like from, to, subject and html. After which we called the `sendMail{:js}` method from our transporter passing these values.
+
+4. **Make a `server.js{:js}` file**: Putting all the pieces together.
+
+```js title="server.js"
+const express = require('express');
+const dotenv = require('dotenv');
+const { sendEmail } = require('./lib/email');
+
+dotenv.config();
+
+const PORT = Number(process.env.PORT) || 5000;
+const app = express();
+
+// middlewares
+app.use(express.json());
+
+app.post('/api/email', async (req, res) => {
+  const body = req.body;
+  const email = body.email;
+
+  if (!email) {
+    return res.send('no email provided');
+  }
+
+  try {
+    const { success } = await sendEmail({
+      email,
+      subject: 'Test email',
+      message: 'This email is sent using nodemailer.',
+    });
+
+    if (!success) {
+      return res.send('failed to send the email');
+    }
+
+    return res.send('email sent');
+  } catch (error) {
+    console.error(error);
+    return res.json(error);
+  }
+});
+
+app.listen(PORT, () => {
+  console.log(`server running on port: ${PORT}`);
+});
+```
+
+Here, we first added the `app.use(express.json()){:js}` as middleware as we'll send json as the request body.
+\
+Then, we made a `/api/email{:text}` route which will be responsible for sending emails.
+
+That's it, we're done. Now let's test our app.
+
+5. **Test by sending emails**: Now, let's send a post request to `/api/email{:text}`. If you're using vscode, use <Link href='https://www.thunderclient.com' target='_blank'>Thunder Client</Link>.
+
+First, run the server by:
+
+```shell
+node server.js
+```
+
+<Image
+  src='/how-to-send-emails-with-node-js/image-2.png'
+  alt='Testing Email Api'
+  height={750}
+  width={750}
+/>
+
+As you can see everything works correctly. And we should recieve the following email:
+
+<Image
+  src='/how-to-send-emails-with-node-js/image-3.png'
+  alt='Received Email'
+  height={300}
+  width={300}
+/>
+
+# How to send email using an email API service
+
+With this second option, we don't need a SMTP server so, this will be easier to setup and manage. For this example we'll be using <Link href='https://app.brevo.com' target='_blank'>Brevo</Link>.
+\
+First <Link href='https://onboarding.brevo.com/account/register' target='_blank'>create an account</Link>. Brevo's free plan allows users to send upto 300 emails per day which is plenty for starting out.
+
+Go to brevo dashboard, from the dropdown at right select SMTP & API. There you'll see your smtp settings, now generate a new smtp key.
+
+<Image
+  src='/how-to-send-emails-with-node-js/image-4.png'
+  alt='Received Email'
+  height={400}
+  width={400}
+/>
+
+After that copy the smtp key and put that in a .env file.
+
+1. **Install Packages**: Run the following command to install necessary packages.
+
+```shell
+npm install express dotenv
+```
+
+2. **Send Email helper**: Create a sendEmail function that'll send an email to the provided email address. It's a good practice to keep your services seperate from other logic.
+
+```js
+const sendEmailViaApi = async ({ to, subject, message }) => {
+  const htmlContent = `
+    <html>
+      <body>
+        <h1>Hello!</h1>
+        <p>${message}</p>
+      </body>
+    </html>
+  `;
+
+  const headers = {
+    'Content-Type': 'application/json',
+    'api-key': process.env.BREVO_API_KEY,
+  };
+
+  const body = {
+    sender: {
+      name: 'Nilotpaul Nandi',
+      email: process.env.ADMIN_EMAIL,
+    },
+    to: [
+      {
+        email: to,
+      },
+    ],
+    subject,
+    htmlContent,
+  };
+
+  const res = await fetch('https://api.brevo.com/v3/smtp/email', {
+    headers,
+    method: 'POST',
+    body: JSON.stringify(body),
+  });
+
+  if (res.status !== 201) {
+    return { success: false };
+  }
+
+  return { success: true };
+};
+
+module.exports = {
+  sendEmailViaApi,
+};
+```
+
+This function makes a POST request to a brevo api endpoint which takes the user's email and returns a success status.
+
+3. **Make a `server.js{:js}` file**: Wiring up everything.
+
+```js
+const express = require('express');
+const dotenv = require('dotenv');
+
+const { sendEmailViaApi } = require('./lib/email');
+
+dotenv.config();
+
+const PORT = Number(process.env.PORT) || 5000;
+const app = express();
+
+// middlewares
+app.use(express.json());
+
+app.post('/api/brevo', async (req, res) => {
+  const body = req.body;
+
+  const email = body.email;
+
+  if (!email) {
+    return res.send('no email provided');
+  }
+
+  try {
+    const { success } = await sendEmailViaApi({
+      to: email,
+      subject: 'Test email',
+      message: 'This email is sent using nodemailer.',
+    });
+
+    if (!success) {
+      return res.status(500).send('failed to send the email');
+    }
+
+    return res.send('email sent');
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json(error);
+  }
+});
+
+app.listen(PORT, () => {
+  console.log(`server running on port: ${PORT}`);
+});
+```
+
+4. **Test by sending emails**: Send a post request to `/api/brevo{:text}`. If you're using vscode, use Thunder Client.
+
+Start the server by:
+
+```shell
+node server.js
+```
+
+If your setup is correct, everything should work correctly. Furthermore you can monitor your limit via Brevo dashboard and upgrade your plan if necessary.
+
+# Conclusion
+
+In this guide, we've learned 2 methods for sending emails via a node.js application: using Nodemailer and SMTP, as well as an email API service (like Brevo). We've broken down their advantages, which we hope will help you choose the best option for yourself.
+
+You can find this guide's source code in my github <Link href='https://github.com/nilotpaul/tutorials/tree/main/email-nodejs' target='_blank'>repository</Link>

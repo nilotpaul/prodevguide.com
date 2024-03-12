@@ -13,12 +13,14 @@ type PostTagsProps = {
 
 const PostTags = ({ tags, hrefs, classNames }: PostTagsProps) => {
   return (
-    <ul className={cn('my-4 flex items-center gap-9', classNames?.main)}>
+    <ul className={cn('my-4 flex flex-wrap items-center gap-9', classNames?.main)}>
       {tags.map((tag, index) => (
         <li className={cn(classNames?.tag)} key={tag}>
-          <Button className='rounded-full px-6' variant='special'>
-            <Link href={hrefs[index]}>{tag}</Link>
-          </Button>
+          <Link href={hrefs[index]}>
+            <Button className='rounded-full px-6' variant='special'>
+              {tag}
+            </Button>
+          </Link>
         </li>
       ))}
     </ul>

@@ -16,7 +16,8 @@ const TagsPage = () => {
 
       <PostTags
         classNames={{
-          tag: 'h-8 w-14 p-0 text-sm',
+          tag: 'h-8 w-fit p-0 text-sm',
+          main: 'gap-x-4',
         }}
         tags={Tags.map(({ name }) => name)}
         hrefs={Tags.map(({ path }) => '/tags' + path)}

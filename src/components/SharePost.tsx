@@ -1,5 +1,5 @@
-import { siFacebook, siLinkedin, siTwitter } from 'simple-icons';
 import Link from './ui/Link';
+import { Icons } from './Icons';
 
 type SharePostProps = {
   url: string;
@@ -8,7 +8,7 @@ type SharePostProps = {
 
 const SharePost = ({ url, text }: SharePostProps) => {
   return (
-    <div className='flex w-full items-center justify-end gap-3'>
+    <div className='flex w-full items-center justify-end gap-4'>
       <p className='mr-2 text-sm text-rose'>Share on:</p>
 
       <Link
@@ -16,45 +16,35 @@ const SharePost = ({ url, text }: SharePostProps) => {
         referrerPolicy='no-referrer'
         href={`https://twitter.com/intent/tweet?url=${url}&text=${text}`}
       >
-        <svg
-          role='img'
-          viewBox='0 0 24 24'
-          className='h-4 w-4 cursor-pointer transition-opacity hover:opacity-90'
-          fill='currentColor'
-          xmlns='http://www.w3.org/2000/svg'
-        >
-          <path d={siTwitter.path} />
-        </svg>
+        <Icons.twitter />
       </Link>
       <Link
         target='_blank'
         referrerPolicy='no-referrer'
         href={`https://www.facebook.com/sharer/sharer.php?u=${url}`}
       >
-        <svg
-          role='img'
-          viewBox='0 0 24 24'
-          className='h-4 w-4 cursor-pointer transition-opacity hover:opacity-90'
-          fill='currentColor'
-          xmlns='http://www.w3.org/2000/svg'
-        >
-          <path d={siFacebook.path} />
-        </svg>
+        <Icons.facebook />
       </Link>
       <Link
         target='_blank'
         referrerPolicy='no-referrer'
         href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`}
       >
-        <svg
-          role='img'
-          viewBox='0 0 24 24'
-          className='h-4 w-4 cursor-pointer transition-opacity hover:opacity-90'
-          fill='currentColor'
-          xmlns='http://www.w3.org/2000/svg'
-        >
-          <path d={siLinkedin.path} />
-        </svg>{' '}
+        <Icons.linkedin />
+      </Link>
+      <Link
+        target='_blank'
+        referrerPolicy='no-referrer'
+        href={`https://t.me/share/url?url=${url}&text=${text}`}
+      >
+        <Icons.telegram />
+      </Link>
+      <Link
+        target='_blank'
+        referrerPolicy='no-referrer'
+        href={`https://api.whatsapp.com/send?text=${url}`}
+      >
+        <Icons.whatsapp />
       </Link>
     </div>
   );

@@ -33,7 +33,7 @@ const Footer = () => {
         </p>
       </section>
 
-      <section className='mt-5 flex gap-6 sm:mt-0'>
+      <section className='mt-5 flex gap-5 sm:mt-0'>
         {SOCIAL_LINKS.map((item) => {
           if (item.name === 'Email') {
             return (

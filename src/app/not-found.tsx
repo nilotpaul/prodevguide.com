@@ -3,6 +3,7 @@ import Footer from '@/components/Footer';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
+import { Icons } from '@/components/Icons';
 
 export default function NotFound() {
   return (
@@ -18,8 +19,13 @@ export default function NotFound() {
           <div className='flex flex-col items-center justify-center gap-6'>
             <p className='text-lg md:text-xl'>Page not found</p>
 
-            <Button size='sm' className='mx-auto w-fit font-semibold tracking-wide' asChild>
-              <Link href='/'>Return Home</Link>
+            <Button
+              size='icon'
+              className='mx-auto h-10 w-10 justify-center rounded-full font-semibold tracking-wide'
+            >
+              <Link href='/'>
+                <Icons.leftArrow className='h-6 w-6' />
+              </Link>
             </Button>
           </div>
         </div>

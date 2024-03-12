@@ -21,34 +21,38 @@ export const PostStatus = ['draft', 'published'];
 
 export const Categories = [
   {
-    name: 'React',
-    description: 'Build dynamic web apps faster with best practices.',
-    path: '/react',
+    name: 'Tutorials',
+    description: 'Detailed guides on development techniques and best practices.',
+    path: '/tutorials',
   },
   {
-    name: 'Next.js',
-    description: 'Detailed guide in ssr and the new app router.',
-    path: '/nextjs',
+    name: 'Resources & Tools',
+    description: 'Valuable resources and tools to boost your productivity.',
+    path: '/resources',
   },
   {
-    name: 'CSS',
-    description: 'Pro tips and tricks, responsive designs, etc.',
-    path: '/css',
+    name: 'Tips & Tricks',
+    description: 'Useful tips and tricks for enhancing your workflow.',
+    path: '/tips',
   },
 ];
 
 export const Tags = [
   {
-    name: 'tag1',
-    path: '/tag1',
+    name: 'Node.js',
+    path: '/node-js',
   },
   {
-    name: 'tag2',
-    path: '/tag2',
+    name: 'Web Development',
+    path: '/web-development',
   },
   {
-    name: 'tag3',
-    path: '/tag3',
+    name: 'Express.js',
+    path: '/express-js',
+  },
+  {
+    name: 'APIs',
+    path: '/apis',
   },
 ];
 
