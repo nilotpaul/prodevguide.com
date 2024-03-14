@@ -22,7 +22,7 @@ export function generateMetadata({ params }: PostPageProps) {
   return constructMetadata({
     title: post.title,
     description: post.description,
-    image: getAssets(post.thumbnail),
+    image: `/assets/${post.thumbnail}`,
   });
 }
 
