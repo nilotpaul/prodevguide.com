@@ -62,8 +62,7 @@ next-env.d.ts
 .open-next
 
 # assets
-/public/assets/*/*
-!/public/assets/*/*/
+/public/assets/*
 
 # bash scripts
 *.bash
