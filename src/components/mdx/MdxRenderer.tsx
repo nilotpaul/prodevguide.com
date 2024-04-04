@@ -86,10 +86,15 @@ const MdxRenderer = ({ code, className, showToc = false }: MdxRendererProps) => 
       className,
       ...props
     }: JSX.IntrinsicElements['pre'] & { raw: string }) => (
-      <pre className={cn('relative', className)} {...props}>
+      <pre className={cn(className)} {...props}>
         <CopyCode rawCode={raw} />
         {children}
       </pre>
+    ),
+    figure: ({ className, children, ...props }) => (
+      <figure className={cn('relative', className)} {...props}>
+        {children}
+      </figure>
     ),
     Table,
     TableCaption,

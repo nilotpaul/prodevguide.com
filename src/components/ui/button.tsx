@@ -16,6 +16,7 @@ const buttonVariants = cva(
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
         rose: 'bg-rose text-primary-foreground hover:bg-rose/90',
+        noBackground: 'bg-transparent hover:bg-transparent text-white',
         special:
           'bg-black/10 font-semibold text-background hover:bg-zinc-400/70 dark:bg-slate-900 dark:text-zinc-200 dark:hover:bg-slate-900/70 font-semibold text-zinc-800 hover:bg-black/20 dark:bg-slate-900 dark:text-zinc-200 dark:hover:bg-slate-900/70',
       },
